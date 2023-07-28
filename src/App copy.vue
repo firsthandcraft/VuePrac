@@ -1,5 +1,5 @@
 <template>
-<!--  //html 실ㄹ시간 미리보기 npm run serve-->
+<!--  //html 실ㄹ시간 fffff미리보기 npm run serve-->
  <div>
     
     <div class="black-bg" v-if="모달창열렸니==true" @click="모달창열렸니 = false">
