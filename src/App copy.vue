@@ -12,11 +12,16 @@
     <ul class="menu">
       <li><a v-for="(a,i) in menus" v-bind:key="i">{{a}}</a></li>
     </ul>
+    <div>
+      
+    </div>
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <div class="card" v-for="(pa,pi) in 원룸들" v-bind:key="pi">
-      <img :src="원룸들[pi].image" @click="모달창열렸니 = true">
-      <h4>{{원룸들[pi].title}}</h4>
-      <p>{{원룸들[pi].price}} 만원</p>
+    <div v-for="(pa,pi) in products" v-bind:key="pi">
+      <img :src="require('@/assets/gundog' + 이미지[pi] + '.png')" @click="모달창열렸니 = true">
+      <h4 :style="스타일">{{logo}}</h4>
+      <p>실시간 렌더링 기능 -데이터 바인딩ㄴ</p>
+      <h4>{{products[pi]}} 원룸</h4>
+      <p>{{price1}} 만원</p>
       <button @click="신고수[pi]++">신고버튼</button> <span>신고수 : {{신고수[pi]}}</span>
     </div>
     
@@ -78,6 +83,4 @@ export default {
 .menu a{color:#fff;padding:10px;}
 .black-bg{width: 100%;height:100%;background: #0000006e;position:fixed;top:0;left:0; padding:20px;}
 .white-bg{width:100%;background:white;border-radius:8px;padding:20px;}
-img{width:400px;}
-.card{margin-bottom:30px;}
 </style>
