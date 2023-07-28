@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # vuedongsan
 
 ## Project setup
@@ -22,3 +23,6 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# VuePrac
+>>>>>>> 42a92df2eca6c79f10853b19185dddd8db513657
