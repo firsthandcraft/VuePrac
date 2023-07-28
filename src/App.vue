@@ -2,10 +2,11 @@
 <!--  //html 실ㄹ시간 미리보기 npm run serve-->
  <div>
     
-    <div class="black-bg">
+    <div class="black-bg" v-if="모달창열렸니==true" @click="모달창열렸니 = false">
       <div class="white-bg">
         <h4>상세페이지</h4>
         <p>상세페이지 내용</p>
+        <button @click="모달창열렸니=false">닫기</button>
       </div>
     </div>
     <ul class="menu">
@@ -16,7 +17,7 @@
     </div>
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <div v-for="(pa,pi) in products" v-bind:key="pi">
-      <img :src="require('@/assets/gundog' + 이미지[pi] + '.png')">
+      <img :src="require('@/assets/gundog' + 이미지[pi] + '.png')" @click="모달창열렸니 = true">
       <h4 :style="스타일">{{logo}}</h4>
       <p>실시간 렌더링 기능 -데이터 바인딩ㄴ</p>
       <h4>{{products[pi]}} 원룸</h4>
@@ -36,8 +37,7 @@ export default {
       // 데이터 보관함이다.
       // 데이터는 object로 저장
       //자주변하는 데이터만넣으면좋음
-      모달창열렸니 :true,
-      모달창닫혔니:false,
+      모달창열렸니 :false,
       menus:['home','shop','about'],
       price1 : 50,
       price2 : 70,
