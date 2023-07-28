@@ -30,6 +30,16 @@
 <script>
 // var array =[10,20,30];
 // array[0]
+
+//import 작명 from './assets/test.js';
+import {apple} from './assets/test.js';
+
+//작명 // =10이;나온다.
+apple //10이 나온다.
+
+import data from './assets/data';//.js확장자 생략가능
+data
+
 export default {
   name: 'App',
   data(){
@@ -37,6 +47,7 @@ export default {
       // 데이터 보관함이다.
       // 데이터는 object로 저장
       //자주변하는 데이터만넣으면좋음
+      원룸들 : data,
       모달창열렸니 :false,
       menus:['home','shop','about'],
       price1 : 50,
