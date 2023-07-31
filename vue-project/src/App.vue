@@ -6,17 +6,21 @@
     </hgroup>
   </header>
   <todo-list-container />
+  <br>
+
 </template>
 
 <script>
+import { ref, reactive } from 'vue'
 // SFC의 name, inheritAttrs, 사용자 옵션 등은 따로 script 태그에 작성한다.
 export default {
   name: "App",
+
 }
 </script>
 
 <script setup>
-import { inject } from "vue"
+import { inject, reactive } from "vue"
 import TodoListContainer from "./components/TodoListContainer.vue"
 
 const today = inject("today")

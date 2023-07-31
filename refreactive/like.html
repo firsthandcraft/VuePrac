@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터를 담는 그릇 ref와 reactive</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+    
+</head>
+<body>
+    <div id="app">
+        <div class="ref">
+            <p>데이터를 담는 그릇 ref와 reactive</p>
+            <h3>count: {{count}}</h3>
+            <button @click="countUp">countUP!!!</button>
+            <!-- todo 객체의 title 속성에 접근하기 전에 todo 객체를 확인하고 사용합니다. -->
+            <h1>todo title: {{ todo.title }}</h1>
+            <h1>todo isDone: {{ todo.isDone }}</h1>
+            <button @click="makeTodoToggle">makeTodoToggle!!!</button>
+            <ul id="array-rendering">
+              <li v-for="item in myArray" v-bind:key="item">
+                {{ item }}
+              </li>
+            </ul>
+        
+          <button @click="addItemToArray">아이템추가</button>
+          <button @click="removeItemFromArray">아이템삭제</button>
+          </div>
+    </div>
+</body>
+<script>
+// SFC의 name, inheritAttrs, 사용자 옵션 등은 따로 script 태그에 작성한다.
+const { createApp,ref, reactive } = Vue;
+createApp({
+  setup(){
+  const count = ref(0)
+  const todo = reactive({ title: '빨래하기', isDone: false })
+  const myArray = reactive([])
+  const countUp = () => {
+    count.value++
+    console.log('countUp() called',count.value);
+  };
+
+  const makeTodoToggle = () => {
+    todo.isDone = !todo.isDone
+    console.log('makeTodoToggle() called', todo.isDone);
+  };
+  const addItemToArray = () => {
+        myArray.push('🔥');
+        console.log('addItemToArray() called', myArray.count);
+      };
+
+  const removeItemFromArray = () => {
+    myArray.pop();
+    console.log('addItemToArray() called', myArray.count);
+  };
+
+  return{
+    count,
+    todo,
+    countUp,
+    makeTodoToggle,
+    myArray,
+    addItemToArray,
+    removeItemFromArray
+  }
+}
+
+
+}).mount('#app')
+</script>
+</html>

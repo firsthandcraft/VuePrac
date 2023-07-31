@@ -20,3 +20,4 @@ export const useStorage = () => {
     saveTodos,
   }
 }
+// 간단한 데이터 저장소 구현

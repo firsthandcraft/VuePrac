@@ -19,13 +19,14 @@ import { useStorage } from "../compositions/storage"
 import TodoListNew from "./TodoListNew.vue"
 import TodoListMain from "./TodoListMain.vue"
 
-const todos = ref([])
+const todos = ref([]) // ref는 객체에게 반응성을 갖도록 반응형이 잇어야 
+//ref에서는 String, Number, Object 등 어떠한 타입에서도 사용
 const { loadTodos, saveTodos, storage_id } = useStorage()
 
 provide("todos", readonly(todos))
 
 const initTodos = (init_todos) => {
-  todos.value = init_todos
+  todos.value = init_todos// ref는 .value를 이용하여 접근가능
 }
 const addTodo = (job, date) => {
   todos.value.push({
