@@ -1,47 +1,36 @@
-np<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+    <hgroup class="my-5">
+      <h1>나의 할일</h1>
+      <em>{{ today }}</em>
+    </hgroup>
   </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <todo-list-container />
 </template>
 
+<script>
+// SFC의 name, inheritAttrs, 사용자 옵션 등은 따로 script 태그에 작성한다.
+export default {
+  name: "App",
+}
+</script>
+
+<script setup>
+import { inject } from "vue"
+import TodoListContainer from "./components/TodoListContainer.vue"
+
+const today = inject("today")
+// <script setup> 에서는 따로 컴포넌트 선언이나 변수를 return하지 않아도 Vue 가 자동으로 설정해준다.
+// import HelloWorld from './components/HelloWorld.vue'
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
+hgroup {
+  text-align: center;
+  font-family: "Arial Bold";
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+hgroup h1 {
+  font-weight: bolder;
 }
 </style>
