@@ -4,4 +4,4 @@
 # 정대리 vue
 
 # 설치방법
-# cite, cdn, npm으로 설치 
+# vite, cdn, npm으로 설치 
