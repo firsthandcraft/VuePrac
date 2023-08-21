@@ -1,0 +1,18 @@
+
+bootstarp
+https://cdnjs.com/libraries/bootstrap
+
+google검색에 
+bootstarp cdn js검색
+
+
+node scss
+https://www.npmjs.com/package/node-sass
+
+<style lang="scss" scoped>
+sass설치
+npm install node-sass@6.0.1 -D
+-d는 개발환경에서만
+
+sass loader
+https://www.npmjs.com/package/sass-loader
