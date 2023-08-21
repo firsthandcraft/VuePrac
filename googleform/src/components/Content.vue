@@ -31,26 +31,52 @@
             </div>
             <div class="cc_middle">
                 <div  v-for="type in input_type" :key="type.value">
-                    <div class="inputType" v-if="selectedOption.value == type.value">
-                        <span class="material-symbols-outlined">{{type.icon}}</span>
-                        <p>
-                            <input :type="type.type" :value="type.text"  :disabled="type.disabled === 'true' ? true : false">
-                        </p>
-                        <!-- <span class="material-symbols-outlined">close</span> -->
+                    <div  v-if="selectedOption.value == type.value">
+                        <div class="inputType">
+                            <span class="material-symbols-outlined">{{type.icon}}</span>
+                            <p>
+                                <input :type="type.type" :value="type.text"  :disabled="type.disabled === 'true' ? true : false">
+                            </p>
+                        </div>
+                        <!-- 라디오버튼 -->
+                        <div v-if="type.value=='MultipleChoiceQuestions'">
+                             <div class="inputType" v-if="radio_etc">
+                                <p><span class="material-symbols-outlined">circle</span><input type="text" value="기타..." disabled><span class="material-symbols-outlined">close</span></p>
+                             </div>
+                             <div class="inputType" >
+                                <p>
+                                    <span class="material-symbols-outlined">circle</span>
+                                    <button >옵션추가</button>
+                                    <span class="add_etc" v-if="radio_etc==true">
+                                        또는 <button  @click="radio_etc = true">'기타'추가</button>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- 체크박스 -->
+                       <div v-if="type.value=='CheckBox'">
+                            <div class="inputType" v-if="check_etc">
+                                <p><span class="material-symbols-outlined">square</span><input type="text" value="기타..." disabled><span class="material-symbols-outlined">close</span></p>
+                            </div>
+                             <div class="inputType" >
+                                <p>
+                                    <span class="material-symbols-outlined">square</span>
+                                    <button >옵션추가</button>
+                                    <span class="add_etc" v-if="check_etc==false">
+                                        또는 <button  @click="check_etc = true">'기타'추가</button>
+                                    </span>
+                                </p>
+                            </div>
+                       </div>
+                        
+
                     </div>
                     
                 </div>
                 
               
-                <div class="inputType">
-                    <p><span class="material-symbols-outlined">circle</span><a href="#">옵션추가</a>또는 <a href="#">'기타'추가</a></p>
-                    <!-- <p><span class="material-symbols-outlined">circle</span><input type="text" value="기타..." disabled><span class="material-symbols-outlined">close</span></p>
-                    <p><span class="material-symbols-outlined">circle</span><a href="#">옵션추가</a></p> -->
-                </div>
-                <div class="inputType">
-                    <p><span class="material-symbols-outlined">square</span><a href="#">옵션추가</a>또는 <a href="#">'기타'추가</a></p>
-                    <!-- <p><span class="material-symbols-outlined">square</span><input type="text" value="옵션"><span class="material-symbols-outlined">close</span></p> -->
-                </div>
+                
+          
             </div>
             <div class="cc_bottom">
                 <p><span class="material-symbols-outlined">content_copy</span></p>
@@ -93,7 +119,10 @@ import { reactive, ref } from "vue";
             ]);
             
 
-        return { options, selectedOption, dropdownOpen, toggleDropdown, selectOption ,input_type};
+        return { options, selectedOption, dropdownOpen, toggleDropdown, selectOption ,input_type,
+            radio_etc:false,
+            check_etc:false,
+        };
         },
     }
 
@@ -130,7 +159,7 @@ import { reactive, ref } from "vue";
     .cc_bottom p span{display:block;}
     /*  */
     .inputType{display:flex;align-items:center;}
-    .inputType>p{width:80%;}
+    .inputType>p{width:80%;display:flex;align-items:center;}
     .inputType>p input{width:100%;}
 
 </style>
