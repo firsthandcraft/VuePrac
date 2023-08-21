@@ -1,4 +1,4 @@
-![image](https://github.com/firsthandcraft/VuePrac/assets/97497153/3c6a0e10-f310-448d-a22a-079a7ddb0368)## memo application
+## memo application
 
 ## :bulb:서비스 및 프로젝트 소개
 
