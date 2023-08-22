@@ -1,5 +1,9 @@
 <<<<<<< HEAD
-# vuedongsan
+# vuedongsan 쇼핑몰
+# meomo application
+# todo application
+# google form application
+
 # 한권으로 배우는 Vue.js
 # 정대리 vue
 
