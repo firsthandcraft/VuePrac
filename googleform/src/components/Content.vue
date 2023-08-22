@@ -38,32 +38,55 @@
                                 <input :type="type.type" :value="type.text"  :disabled="type.disabled === 'true' ? true : false">
                             </p>
                         </div>
+                        
                         <!-- 라디오버튼 -->
                         <div v-if="type.value=='MultipleChoiceQuestions'">
-                             <div class="inputType" v-if="radio_etc">
-                                <p><span class="material-symbols-outlined">circle</span><input type="text" value="기타..." disabled><span class="material-symbols-outlined">close</span></p>
-                             </div>
-                             <div class="inputType" >
+                            <!-- 옵션추가 -->
+                            <ul>
+                                <li class="inputType" v-for="d in radio_option.radio_data" :key="d">
+                                    <p>
+                                        <span class="material-symbols-outlined">circle</span>
+                                        <input :type="text" :value="d.idx"  >
+                                        <span class="material-symbols-outlined" >close</span>
+                                    </p>
+                                </li>
+                            </ul>
+                            <!-- 기타추가 -->
+                            <div class="inputType" v-if="add_radio==true" >
                                 <p>
                                     <span class="material-symbols-outlined">circle</span>
-                                    <button >옵션추가</button>
-                                    <span class="add_etc" v-if="radio_etc==true">
-                                        또는 <button  @click="radio_etc = true">'기타'추가</button>
+                                    <input type="text" value="기타..." disabled>
+                                    <span class="material-symbols-outlined"  @click="add_radio = false">close</span>
+                                </p>
+                            </div>
+                            <div class="inputType" >
+                                <p>
+                                    <span class="material-symbols-outlined">circle</span>
+                                    <button @click="add_radio_option(index)">옵션추가</button>
+                                    <span class="add_etc" v-if="add_radio==false" >
+                                        또는 <button @click="add_radio = true">'기타'추가</button>
                                     </span>
                                 </p>
                             </div>
                         </div>
                         <!-- 체크박스 -->
                        <div v-if="type.value=='CheckBox'">
-                            <div class="inputType" v-if="check_etc">
-                                <p><span class="material-symbols-outlined">square</span><input type="text" value="기타..." disabled><span class="material-symbols-outlined">close</span></p>
+                            <!-- 옵션추가 -->
+                            
+                            <!-- 기타추가 -->
+                            <div class="inputType" v-if="add_check==true" >
+                                <p>
+                                    <span class="material-symbols-outlined">square</span>
+                                    <input type="text" value="기타..." disabled>
+                                    <span class="material-symbols-outlined" @click="add_check = false">close</span>
+                                </p>
                             </div>
-                             <div class="inputType" >
+                            <div class="inputType" >
                                 <p>
                                     <span class="material-symbols-outlined">square</span>
                                     <button >옵션추가</button>
-                                    <span class="add_etc" v-if="check_etc==false">
-                                        또는 <button  @click="check_etc = true">'기타'추가</button>
+                                    <span class="add_etc" v-if="add_check==false">
+                                        또는 <button @click="add_check= true" >'기타'추가</button>
                                     </span>
                                 </p>
                             </div>
@@ -93,6 +116,12 @@
 <script>
 import { reactive, ref } from "vue";
     export default{
+        //Options APi
+        data(){
+            return{
+                add_radio :false,add_check: false,
+            }
+        },
         setup() {
             const options = reactive([
                 { question: '단답형', question_img: 'notes',value:'ShortAnswer' },
@@ -106,6 +135,7 @@ import { reactive, ref } from "vue";
             const toggleDropdown = () => {
                 dropdownOpen.value = !dropdownOpen.value;
             };
+            const radio_etc= ref(false);
             const selectOption = (option) => {
                 selectedOption.value = option;
                 dropdownOpen.value = false;
@@ -113,16 +143,22 @@ import { reactive, ref } from "vue";
             const input_type  = reactive([
                 { value:'ShortAnswer',text:'단답형 텍스트',type:'text',icon:'',disabled:'true'},
                 { value:'Long',text:'장문형 텍스트',type:'text',icon:'',disabled:'true'},
-                { value:'MultipleChoiceQuestions',text:'옵션',type:'text',icon:'circle' ,disabled:'false' },
-                { value:'CheckBox',text:'옵션',type:'text',icon:'square' ,disabled:'false' },
+                { value:'MultipleChoiceQuestions',text:'옵션1',type:'text',icon:'circle' ,disabled:'false' },
+                { value:'CheckBox',text:'옵션1',type:'text',icon:'square' ,disabled:'false' },
                 { value:'FileUpload',text:'',type:'file',icon:'' ,disabled:'false' },
             ]);
+            const radio_option = reactive({
+                radio_data :[], 
+            })
             
+            const add_radio_option =() =>{
+                radio_option.radio_data.push("추가된메모내용")
+                console.log(radio_option.radio_data)
+                
+     
+            };
 
-        return { options, selectedOption, dropdownOpen, toggleDropdown, selectOption ,input_type,
-            radio_etc:false,
-            check_etc:false,
-        };
+            return { options, selectedOption, dropdownOpen, toggleDropdown, selectOption ,input_type,add_radio_option,radio_option};
         },
     }
 
@@ -139,12 +175,7 @@ import { reactive, ref } from "vue";
     .contentWrap article.active::after{content:"";position:absolute;top:0;left:0; width:6px;height:100%;background: #4285f4;}
     .c_title input:nth-child(1){width:100%; font-family: 'docs-Roboto';font-weight: 400;font-size: 24pt;line-height: 1.25;letter-spacing: 0;}
     .cc_top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
-    .cc_qustion{min-width:300px;width:60%;font-family: 'docs-Roboto';
-    font-weight: 400;
-    font-size: 12pt;
-    line-height: 1.5;
-    letter-spacing: 0;}
-
+    .cc_qustion{min-width:300px;width:60%;font-family: 'docs-Roboto';font-weight: 400;font-size: 12pt;line-height: 1.5;letter-spacing: 0;}
     .selectWrap{position: relative;}
     .select_header{min-width:200px;width:30%;padding:10px; border: 1px solid #dadce0;border-radius:4px;}
     .select_header li{display:flex; justify-content:space-between;align-items:center;}

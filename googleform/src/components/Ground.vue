@@ -2,7 +2,6 @@
   <div class="ground">
     <Header/>
     <Content/>
-    <Footer/>
 
   </div>
 </template>
