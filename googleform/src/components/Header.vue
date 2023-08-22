@@ -27,10 +27,8 @@
     </header>
 </template>
 <style scoped>
-    header{background:#fff;}
-    ul,li{list-style:none;padding:0;margin:0;}
-    a{text-decoration:none;}
-    header{padding:4px 20px;}
+   @import url("../index.css");
+   /* ----- header ----- */
     .h_top,.ht_left,.ht_right{display:flex;justify-content:space-between;align-items:center;}
     .form_icon{height: 40px;width: 40px;margin:4px 10px 4px 0;}
     .ht_left .title{font-family: "Google Sans",Roboto,Arial,sans-serif;font-size: 18px;font-weight: 400;line-height: 24px;color: #202124;}
