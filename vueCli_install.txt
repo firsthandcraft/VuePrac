@@ -1,0 +1,24 @@
+https://cli.vuejs.org/#getting-started
+vue cli 
+시작하기
+
+#설치 
+npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
+
+#버전확인
+vue --version
+
+#업그레이드 
+npm update -g @vue/cli
+# OR
+yarn global upgrade --latest @vue/cli
+
+#프로젝트 만들기:vue create 만들폴더명
+vue create my-project
+# OR
+vue ui
+
+#옵션 보기 
+vue create --help
