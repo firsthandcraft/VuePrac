@@ -15,7 +15,7 @@ npm update -g @vue/cli
 # OR
 yarn global upgrade --latest @vue/cli
 
-#프로젝트 만들기:
+#프로젝트 만들기:vue create 만들폴더명
 vue create my-project
 # OR
 vue ui
