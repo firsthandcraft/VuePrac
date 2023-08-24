@@ -5,11 +5,11 @@
                 <input class="cc_qustion" type="text" placeholder="제목없는 질문">
              
                 <!--설명 이미지-->
-                <a class="cc_image" href="#">
+                <div class="cc_image" >
                     <label><span class="material-symbols-outlined">image</span>
                     <input type="file" hidden  @change="fileChange" >
                     </label>
-                </a>
+                </div>
                 <!--질문유형-->
                 <div class="selectWrap">
                     <ul class="select_header" @click="toggleDropdown">
@@ -58,7 +58,7 @@
                             <p>
                                 <input type="text"  v-bind:value="d"  @change="setRadioInput(index,$event)" >
                             </p>
-                            <span class="material-symbols-outlined optiondelete" v-if="index !== 0" @click="remove_radio_option(index)">close</span>
+                            <span class="material-symbols-outlined optiondelete close_btn" v-if="index !== 0" @click="remove_radio_option(index)">close</span>
                         </li>
                     </ul>
                     <div class="inputType" v-if="add_radio==true">
@@ -66,7 +66,7 @@
                         <p>
                             <input type="text" value="기타..." disabled>
                         </p>
-                            <span class="material-symbols-outlined"  @click="add_radio = false">close</span>
+                            <span class="material-symbols-outlined close_btn"  @click="add_radio = false">close</span>
                     </div>
                     <div class="inputType" >
                         <p>
@@ -85,14 +85,14 @@
                             <p>
                                 <input type="text" :value="c" @change="setCheckInput(index,$event)"  >
                             </p>
-                            <span class="material-symbols-outlined optiondelete" v-if="index !== 0" @click="remove_check_option(index)">close</span>
+                            <span class="material-symbols-outlined optiondelete close_btn" v-if="index !== 0" @click="remove_check_option(index)">close</span>
                         </li>
                     </ul>
                     <div class="inputType" v-if="add_check==true" >
                         <p>
                             <span class="material-symbols-outlined">square</span>
                             <input type="text" value="기타..." disabled>
-                            <span class="material-symbols-outlined" @click="add_check = false">close</span>
+                            <span class="material-symbols-outlined close_btn" @click="add_check = false">close</span>
                         </p>
                     </div>
                     <div class="inputType" >
@@ -117,7 +117,6 @@
                 <p><span class="material-symbols-outlined">delete</span></p>
                 <p class="necessary">필수</p>
                 <p><span class="material-symbols-outlined">more_vert</span></p>
-                
             </div>
         </article>
 </template>
@@ -240,6 +239,7 @@ import { reactive, ref } from "vue";
     .options{width:100%; position:absolute;top:0;left:0; min-width: 209px;box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);background: #fff;}
     .options li{padding:8px;}
     .options li:hover{background-color: rgba(0,0,0,.2);}
+    
     /*  중간 */
     .inputType{display:flex;align-items:center;}
     .inputType>p{width:80%;display:flex;align-items:center;}

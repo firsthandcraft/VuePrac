@@ -9,15 +9,33 @@
             <span>마감일자</span><input type="date" placeholder="일자">
         </article>
         <!-- 선택응답 -->
+        <button @click="cloneComponent">복제하기</button>
+        <div v-for="(component, index) in clonedComponents" :key="index">
         <ContentMain/>
-
+        </div>
+        <ContentNav/>
+        <div style="height:1800px"></div>
    </div>
 </template>
 <script>
+import { ref } from 'vue';
 import ContentMain from './ContentMain.vue';
+import ContentNav from './ContentNav.vue';
 
     export default{
-        components:{ContentMain},
+        components:{ContentMain,ContentNav},
+         setup() {
+            const clonedComponents = ref([]);
+            const cloneComponent = () => {
+            const newIndex = clonedComponents.value.length;
+            clonedComponents.value.push(newIndex);
+            };
+
+            return {
+            clonedComponents,
+            cloneComponent,
+            };
+        },
 
     }
 
@@ -25,7 +43,7 @@ import ContentMain from './ContentMain.vue';
 <style scoped>
     @import url("../index.css");
     /* contentWrap */
-    .contentWrap{padding: 12px 0 64px;margin: auto;width:90%;max-width: 770px;min-width:370px;}
+    .contentWrap{padding: 12px 0 64px;margin: auto;width:90%;max-width: 770px;min-width:370px;position: relative;}
     .c_title{padding-bottom: 24px;position: relative;overflow: hidden;}
     /* c_title제목 */
     .c_title::before{content:"";position:absolute;top:0;left:0; width:100%;height:12px;background:rgb(103, 58, 183);z-index:10;}
