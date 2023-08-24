@@ -1,15 +1,21 @@
 <template>
    <div class="contentWrap">
-        <!-- 제목 -->
+        <!-- 필수 응답 제목 -->
         <article class="c_title active">
             <input  type="text" placeholder="제목">
             <input type="text" placeholder="설문지 설명">
+            <input type="text" placeholder="신청자수">
+            <span>신청일자</span><input type="date" placeholder="일자">
+            <span>마감일자</span><input type="date" placeholder="일자">
         </article>
+        <!-- 선택응답 -->
         <ContentMain/>
+
    </div>
 </template>
 <script>
 import ContentMain from './ContentMain.vue';
+
     export default{
         components:{ContentMain},
 

@@ -12,7 +12,7 @@
             <div class="ht_right">
                 <p><span class="material-symbols-outlined">palette</span></p>
                 <p><span class="material-symbols-outlined">visibility</span></p>
-                <p><span class="material-symbols-outlined">undo</span></p>
+                <!-- <p><span class="material-symbols-outlined">undo</span></p> -->
                 <p><span class="material-symbols-outlined">send</span></p>
                 <p><span class="material-symbols-outlined">more_vert</span></p>
             </div>
@@ -21,7 +21,6 @@
             <ul>
                 <li><a class="active" href="#">질문</a></li>
                 <li><a href="#">응답</a></li>
-                <li><a href="#">설정</a></li>
             </ul>
         </div>
     </header>
