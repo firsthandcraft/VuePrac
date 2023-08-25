@@ -116,7 +116,7 @@
             <!--  -->
             <!--  -->
             <div class="cc_bottom">
-                <p><span class="material-symbols-outlined">content_copy</span></p>
+                <p @click="content_copy()"><span class="material-symbols-outlined">content_copy</span></p>
                 <p><span class="material-symbols-outlined">delete</span></p>
                 <p class="necessary">                               
                     <input id="toggle" type="checkbox" hidden @change="necessary_check(e)">
@@ -136,7 +136,7 @@ import { reactive, ref } from "vue";
             return{
             }
         },
-        setup() { 
+        setup(_, { emit }) { 
             //01,02,03... 순서가 있는것은 데이터에 넣는 기능입니다.
             //01. 총 질문 내용 데이터 
             const data_card = reactive({
@@ -270,8 +270,12 @@ import { reactive, ref } from "vue";
             const necessary_check = (e) =>{
                  necessary.value = !necessary.value;
                  data_card.necessary=  necessary.value;
-                //  console.log(necessary.value)
+                //  console.log(necessary.value)//07.필수체크 총데이터 값에 넣음
             }
+            //복제 emit
+             const content_copy = () => {
+                emit('contentCopyEvent', data_card); // 'contentCopyEvent'라는 이벤트와 데이터를 발생시킴
+            };
             return {
                 data_card,titleChange,
                 img_file,img_reader,fileChange,
@@ -280,6 +284,7 @@ import { reactive, ref } from "vue";
                 radio_option,add_radio,radioOptionCount,add_radio_option,remove_radio_option,setRadioInput,radio_etc,
                 check_option,add_check,checkOptionCount,add_check_option,remove_check_option,setCheckInput,check_etc,
                 necessary_check,
+                content_copy
             };
         },
         methods: {

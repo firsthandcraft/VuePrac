@@ -10,18 +10,20 @@
         </article>
         <!-- 선택응답 -->
         <div v-for="(component, index) in clonedComponents" :key="index">
-        <ContentMain/>
+        <ContentMain @contentCopyEvent="handleContentCopy"/>
         </div>
         <ContentNav @click="cloneComponent"/>
+        <EmitTest/>
    </div>
 </template>
 <script>
 import { ref } from 'vue';
 import ContentMain from './ContentMain.vue';
 import ContentNav from './ContentNav.vue';
+import EmitTest from './EmitTest.vue';
 
     export default{
-        components:{ContentMain,ContentNav},
+        components:{ContentMain,ContentNav,EmitTest},
          setup() {
             const clonedComponents = ref([]);
             const newIndex = clonedComponents.value.length;
@@ -35,8 +37,13 @@ import ContentNav from './ContentNav.vue';
             clonedComponents,
             cloneComponent,
             };
-        },
-
+        }, 
+        methods: {
+            handleContentCopy(data) {
+            // 받은 데이터 활용
+            console.log('Received data:', data);
+            },
+        }
     }
 
 </script>
