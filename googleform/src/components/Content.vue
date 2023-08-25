@@ -9,12 +9,10 @@
             <span>마감일자</span><input type="date" placeholder="일자">
         </article>
         <!-- 선택응답 -->
-        <button @click="cloneComponent">복제하기</button>
         <div v-for="(component, index) in clonedComponents" :key="index">
         <ContentMain/>
         </div>
-        <ContentNav/>
-        <div style="height:1800px"></div>
+        <ContentNav @click="cloneComponent"/>
    </div>
 </template>
 <script>
@@ -26,9 +24,11 @@ import ContentNav from './ContentNav.vue';
         components:{ContentMain,ContentNav},
          setup() {
             const clonedComponents = ref([]);
-            const cloneComponent = () => {
             const newIndex = clonedComponents.value.length;
             clonedComponents.value.push(newIndex);
+            const cloneComponent = () => {
+            
+                clonedComponents.value.push(newIndex);
             };
 
             return {
