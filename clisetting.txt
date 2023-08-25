@@ -1,0 +1,67 @@
+설치 
+  => npm install -g @vue/cli
+  =>  vue create tutorial
+
+---------------------
+? Please pick a preset: (Use arrow keys)
+> Default ([Vue 3] babel, eslint) 
+  Default ([Vue 2] babel, eslint) 
+  Manually select features 
+----------------------
+에서 마지막 선택 
+
+-------------------
+Vue CLI v5.0.8
+? Please pick a preset: Manually select features
+? Check the features needed for your project: (Press <space> to select, <a> to toggle all, <i> to invert selection, and <enter> to proceed)
+>(*) Babel
+ ( ) TypeScript
+ ( ) Progressive Web App (PWA) Support
+ ( ) Router
+ ( ) Vuex
+ ( ) CSS Pre-processors
+ (*) Linter / Formatter
+ ( ) Unit Testing
+ ( ) E2E Testing
+-------------------
+? Please pick a preset: Manually select features
+? Check the features needed for your project: (Press <space> to select, <a> to toggle all, <i> to invert selection, and <enter> to proceed)
+ (*) Babel
+ ( ) TypeScript
+ ( ) Progressive Web App (PWA) Support
+ (*) Router
+ (*) Vuex
+ ( ) CSS Pre-processors
+>( ) Linter / Formatter
+ ( ) Unit Testing
+ ( ) E2E Testing
+ 위처럼 선택 
+
+--------------------
+? Choose a version of Vue.js that you want to start the project with 3.x
+------------------
+버전 3으로 
+
+-----------------------
+? Use history mode for router? (Requires proper server setup for index fallback in production) (Y/n) 
+---------------------------
+Y로 
+
+--------------------------
+? Where do you prefer placing config for Babel, ESLint, etc.?
+  In dedicated config files
+> In package.json
+----------------------------
+package.json으로 
+
+--------------마지박 질문은no로 ----------
+
+실행 ㅞㅞㅡ 
+  =>  vue-cli\tutorial>npm run serve
+  
+구성
++
+router파일 
+vue 의 store 파일 
+등이 있다.
+
