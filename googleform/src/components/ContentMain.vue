@@ -118,7 +118,12 @@
             <div class="cc_bottom">
                 <p><span class="material-symbols-outlined">content_copy</span></p>
                 <p><span class="material-symbols-outlined">delete</span></p>
-                <p class="necessary">필수</p>
+                <p class="necessary">                               
+                    <input id="toggle" type="checkbox" hidden @change="necessary_check(e)">
+                    <label for="toggle" class="toggleSwitch">
+                        <span class="toggleButton"></span>
+                    </label>
+                </p>
                 <p><span class="material-symbols-outlined">more_vert</span></p>
             </div>
         </article>
@@ -139,7 +144,8 @@ import { reactive, ref } from "vue";
                 img :"",
                 qustion_type:"",
                 qustion_data :[],
-                etc:""
+                etc:"",
+                necessary:"",
             });
             //02.질문 제목 데이터에 넣음
             const titleChange=(e) =>{
@@ -259,6 +265,13 @@ import { reactive, ref } from "vue";
                 }
                 // console.log(data_card);
             };
+            //07.필수체크
+            let necessary = ref(false);
+            const necessary_check = (e) =>{
+                 necessary.value = !necessary.value;
+                 data_card.necessary=  necessary.value;
+                //  console.log(necessary.value)
+            }
             return {
                 data_card,titleChange,
                 img_file,img_reader,fileChange,
@@ -266,6 +279,7 @@ import { reactive, ref } from "vue";
                 options, selectOption,selectedOption,
                 radio_option,add_radio,radioOptionCount,add_radio_option,remove_radio_option,setRadioInput,radio_etc,
                 check_option,add_check,checkOptionCount,add_check_option,remove_check_option,setCheckInput,check_etc,
+                necessary_check,
             };
         },
         methods: {
@@ -284,7 +298,7 @@ import { reactive, ref } from "vue";
     .select_header li{display:flex; justify-content:space-between;align-items:center;}
     .select_header li p{margin:0;display:flex;align-items:center;}
     .select_header li p span{margin-right: 8px;}
-    .options{width:100%; position:absolute;top:0;left:0; min-width: 209px;box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);background: #fff;}
+    .options{width:100%; position:absolute;top:0;left:0; min-width: 209px;box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);background: #fff;    z-index: 10;}
     .options li{padding:8px;}
     .options li:hover{background-color: rgba(0,0,0,.2);}
     
@@ -296,6 +310,13 @@ import { reactive, ref } from "vue";
     .cc_bottom{margin-top:20px; display: flex;justify-content:end; align-items:center;border-top:1px solid #dadce0;height: 64px;}
     .cc_bottom p{width:48px;height:48px;display:flex;justify-content:center;align-items:center;}
     .cc_bottom p span{display:block;}
-
-
+    /* 필수 버튼 */
+    .cc_bottom .necessary{width: 100px;justify-content:end;}
+    .toggleSwitch {width:36px;height:14px;display: block;position: relative;border-radius: 30px;background-color:#9b9b9b;box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0,0,0,.05), 0 0.1875rem 0.1875rem 0 rgba(0,0,0,.1), 0 0.1875rem 0.0625rem 0 rgba(0,0,0,.05);cursor: pointer;}
+    .toggleSwitch::before{content:"필수";position:absolute;top:calc(50% - 10px);left:-40px;}
+    .toggleSwitch .toggleButton {width:20px;height:20px;position: absolute;top: 50%;left: calc(100% - 38px);transform: translateY(-50%);border-radius: 50%;background: #fff;}
+    #toggle:checked ~ .toggleSwitch {background:rgba(104, 58, 183, 0.338);} 
+    /* b9b9b9 */
+    #toggle:checked ~ .toggleSwitch .toggleButton { left:19px;background:rgb(103, 58, 183);}
+    .toggleSwitch, .toggleButton{transition: all 0.2s ease-in;}
 </style>
