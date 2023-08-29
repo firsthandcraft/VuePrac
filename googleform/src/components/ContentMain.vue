@@ -1,13 +1,15 @@
 <template>
-        <article class="c_content">
+    <div >
+        <button @click="addComponent">추가</button>
+         <article class="c_content" v-for="item in allData.data" :key="item.id">
             <div class="cc_top">
                 <!--질문제목 -->
-                <input class="cc_qustion" type="text" placeholder="제목없는 질문" @change="titleChange">
+                <input class="cc_qustion" type="text" placeholder="제목없는 질문" v-model="item.title" @change="titleChange($event, item)">
              
                 <!--설명 이미지-->
                 <div class="cc_image" >
                     <label><span class="material-symbols-outlined">image</span>
-                    <input type="file" hidden  @change="fileChange" >
+                    <input type="file" hidden  @change="fileChange($event, item)" >
                     </label>
                 </div>
                 <!--질문유형-->
@@ -32,16 +34,14 @@
             </div>
             <!-- 설명이미지  -->
             <div class="cc_img" >
-                <!-- <div v-for="(url, index) in img_file" :key="index">
-                    <img :src="url" :alt="url" style="width:200px" />
-                </div> -->
-                <img :src="img_file" :alt="img_file" style="width:200px" />
+                <img :src="item.img" :alt="img_file" style="width:200px" />
+
             </div>
             <div class="cc_middle">
                 <div v-if="selectedOption.value == 'ShortAnswer'">
                     <div class="inputType">
                         <p>
-                            <input type="text" placeholder="단답형 텍스트" disabled> 
+                            <input type="text" placeholder="단답형 텍스트" disabled > 
                         </p>
                     </div>
                 </div>
@@ -127,19 +127,58 @@
                 <p><span class="material-symbols-outlined">more_vert</span></p>
             </div>
         </article>
+    </div>
+       
 </template>
 <script>
-import { reactive, ref } from "vue";
-    export default{
+import { reactive, ref,defineComponent } from "vue";
+    export default defineComponent({//01,02,03... 순서가 있는것은 데이터에 넣는 기능입니다.
+        // props: {
+        //    copyText:{
+        //         type:Object,
+        //         required: true,
+        //         default: () => ({ 
+        //             title :"",
+        //             img :"",
+        //             qustion_type:"",
+        //             qustion_data :[],
+        //             etc:"",
+        //             necessary:"",
+        //          }),
+        //    }
+        // },
+        // emits: ['contentCopyEvent'],
         //Options APi
-        data(){
-            return{
-            }
-        },
-        setup(_, { emit }) { 
-            //01,02,03... 순서가 있는것은 데이터에 넣는 기능입니다.
-            //01. 총 질문 내용 데이터 
-            const data_card = reactive({
+        setup() { //props, { emit }
+            //00. 전체 질문들
+            const allData =  reactive({
+                   data :[], 
+            })
+            //01.첫번째 질문 복제
+            allData.data.push(
+                { title :"",
+                img :"",
+                qustion_type:"",
+                qustion_data :[],
+                etc:"",
+                necessary:"",}
+            );
+            //02.세부 질문 추가 +
+            const addComponent = () => {
+                    const newComponent  = ({
+                        title :"newData",
+                        img :"",
+                        qustion_type:"",
+                        qustion_data :[],
+                        etc:"",
+                        necessary:"",
+                    });
+                    allData.data.push(newComponent);
+                    console.log(allData.data)
+            };
+            
+            //세부 질문 내용 데이터틀 바뀐데이터를 여기에 넣고 다시 세팅할것임
+            let data_card = reactive({
                 title :"",
                 img :"",
                 qustion_type:"",
@@ -147,28 +186,32 @@ import { reactive, ref } from "vue";
                 etc:"",
                 necessary:"",
             });
+           
             //02.질문 제목 데이터에 넣음
-            const titleChange=(e) =>{
-                //console.log(e.target.value);
-                data_card.title= e.target.value
-                //console.log(data_card.title)
-                console.log(data_card)
-             }
+            const titleChange=function(e,itemId){
+                const itemToUpdate = allData.data.find(item => item === itemId);
+                if (itemToUpdate) {
+                    itemToUpdate.title = e.target.value;
+                    // console.log("Title changed for item with ID:", itemId);
+                    // console.log("New title:", itemToUpdate.title);
+                }
+                console.log(allData.data)
+            }
             //03.이미지 
-            let img_file =ref(null);
-            const img_reader = new FileReader();
-            const fileChange=(e) =>{
+            const img_file = reactive([]);//이미지 URL저장 배열
+            const fileChange = function(e,itemId){//input img 이미지를 넣을때
                 const selectedFile = e.target.files[0];
-                if (selectedFile instanceof Blob) {
-                    img_reader.addEventListener('load', () => {
-                        // img_file.value.push(img_reader.result)
-                        img_file.value=img_reader.result;
-                        //console.log(img_reader.result);
-                        data_card.img=img_reader.result;//03.이미지총데이터에넣음
-                    });
-                    img_reader.readAsDataURL(selectedFile);
-                } else {
-                    console.error('Selected file is not a Blob.');
+                const img_reader = new FileReader();//새로운 파일 리더
+                const itemToUpdate = allData.data.find(item => item === itemId);
+                if (itemToUpdate) {
+                    if (selectedFile instanceof Blob) {
+                        img_reader.addEventListener('load', () => {
+                            itemToUpdate.img=img_reader.result;
+                        });
+                        img_reader.readAsDataURL(selectedFile);
+                    } else {
+                        console.error('Selected file is not a Blob.');
+                    }
                 }
              }
             //질문유형_메뉴 ::select 태그는 이미지가 못들어간다.
@@ -271,26 +314,32 @@ import { reactive, ref } from "vue";
                  necessary.value = !necessary.value;
                  data_card.necessary=  necessary.value;
                 //  console.log(necessary.value)//07.필수체크 총데이터 값에 넣음
-            }
-            //복제 emit
-             const content_copy = () => {
-                emit('contentCopyEvent', data_card); // 'contentCopyEvent'라는 이벤트와 데이터를 발생시킴
             };
+         
+            //복제 emit
+            //  const content_copy =function(e){
+            //     let content_gg=data_card
+            //     emit('contentCopyEvent', content_gg); // 'contentCopyEvent'라는 이벤트와 데이터를 발생시킴
+            //     console.log(data_card)
+            //  };
+      
             return {
                 data_card,titleChange,
-                img_file,img_reader,fileChange,
+                fileChange,img_file,
                 dropdownOpen, toggleDropdown, 
                 options, selectOption,selectedOption,
                 radio_option,add_radio,radioOptionCount,add_radio_option,remove_radio_option,setRadioInput,radio_etc,
                 check_option,add_check,checkOptionCount,add_check_option,remove_check_option,setCheckInput,check_etc,
                 necessary_check,
-                content_copy
+                //content_copy
+                addComponent,
+                allData,//allData
             };
         },
         methods: {
             
-        },
-    }
+        }
+    });
 
 </script>
 <style scoped>

@@ -9,10 +9,12 @@
             <span>마감일자</span><input type="date" placeholder="일자">
         </article>
         <!-- 선택응답 -->
-        <div v-for="(component, index) in clonedComponents" :key="index">
-        <ContentMain @contentCopyEvent="handleContentCopy"/>
-        </div>
-        <ContentNav @click="cloneComponent"/>
+        <!-- <div v-for="(component, index) in clonedComponents" :key="index"> -->
+            <ContentMain />
+            <!-- :copyText="component.data"  -->
+            <!-- @contentCopyEvent="handleContentCopy" -->
+        <!-- </div> -->
+        <ContentNav/>
         <EmitTest/>
    </div>
 </template>
@@ -25,25 +27,25 @@ import EmitTest from './EmitTest.vue';
     export default{
         components:{ContentMain,ContentNav,EmitTest},
          setup() {
-            const clonedComponents = ref([]);
-            const newIndex = clonedComponents.value.length;
-            clonedComponents.value.push(newIndex);
-            const cloneComponent = () => {
-            
-                clonedComponents.value.push(newIndex);
-            };
+           
+            // const handleContentCopy = (data) =>{
+            //     //console.log(data)
+            //     clonedComponents.value.push({ data: data }); // 전달된 데이터를 직접 배열에 추가
+            //     console.log(clonedComponents);
 
+            // }
             return {
-            clonedComponents,
-            cloneComponent,
+            // clonedComponents,
+            // cloneComponent,
+            // handleContentCopy
             };
         }, 
-        methods: {
-            handleContentCopy(data) {
-            // 받은 데이터 활용
-            console.log('Received data:', data);
-            },
-        }
+        // methods: {
+        //     handleContentCopy(data) {
+        //     // 받은 데이터 활용
+        //     console.log('Received data:', data);
+        //     },
+        // }
     }
 
 </script>
