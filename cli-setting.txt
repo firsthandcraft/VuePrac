@@ -66,3 +66,18 @@ port 8089원하는 포트로 바꾼다.
     "serve": "vue-cli-service serve --port 8089",
     "build": "vue-cli-service build"
   },
+
+-- cli플러그인 
+vue-cli-plugin 검색하면 다나옴
+그중에서 vuetify 플러그인 할것임 = 부트스트랩 같고 컴포넌트 기반임
+https://vuetifyjs.com/en/getting-started/installation/
+
+--vuetify
+tutorial폴더에 
+ -- > vue add vuetify
+
+ //
+ ? Choose a preset: Vuetify 3 - Vue CLI (preview)
+ vue 버전 3은 버전3으로 맞춰줘야한다.
+
+ //배포하기 npm run build
