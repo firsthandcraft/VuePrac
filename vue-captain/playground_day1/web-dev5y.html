@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인스턴스와 생성자 함수</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <h3>인스턴스와 생성자 함수</h3>
+    <a href="https://joshua1988.github.io/vue-camp/vue/instance.html#%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC">https://joshua1988.github.io/vue-camp/vue/instance.html#%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3-%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC</a>
+    <div id="app">
+        {{message}}
+    </div>
+    <p>뷰개발자도구</p>
+    <img src="./img/vuecommand.png" alt="">
+</body>
+
+<script>
+    //생성자함수 만들기
+    function Person (name,job){
+        this.name=name;
+        this.job=job;
+    }
+    let p=new Person('josh','developers');
+    //
+    function Vue(){
+        this.logText = function(){
+            console.log('hello');
+        }
+    } 
+    //미리 만든 함수를 사용할수 있다. 
+    let vm=new Vue();
+    //vm.logText(); //hello
+    
+</script>
+</html>

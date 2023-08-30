@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인스턴스 소개</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <h3>뷰 인스턴스</h3>
+    <p>인스턴스는 뷰로 개발할 때 필수로 생성해야 하는 코드입니다</p>
+    <div id="app">
+        {{message}}
+    </div>
+    <p>뷰개발자도구</p>
+    <img src="./img/vuecommand.png" alt="">
+</body>
+
+<script>
+    let vm=new Vue({
+        el:'#app',//el을 붙이는 순간 vue의 기능이 유효하다.
+        data: {
+            message : 'Hello Vue.js'
+        }
+    })
+    
+</script>
+</html>

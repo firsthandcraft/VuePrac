@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뷰 컴포넌트</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x.x/dist/vue.min.js"></script>
+</head>
+<body>
+    <a href="https://joshua1988.github.io/vue-camp/vue/components.html#%E1%84%8F%E1%85%A5%E1%86%B7%E1%84%91%E1%85%A9%E1%84%82%E1%85%A5%E1%86%AB%E1%84%90%E1%85%B3-%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%92%E1%85%A7%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8">뷰 컴포넌트</a>
+    <p>컴포넌트는 화면의 영역을 구분하여 개발할 수 있는 뷰의 기능입니다. 컴포넌트 기반으로 화면을 개발하게 되면 코드의 재사용성이 올라가고 빠르게 화면을 제작할 수 있습니다.</p>
+    <div id="app">
+
+        <app-header></app-header>
+        <app-content></app-content>
+
+    </div>
+
+</body>
+
+
+<script>
+   // Vue.component('컴포넌트이름',컴포넌트내용);
+    Vue.component('app-header',{
+        template:'<h1>Header</h1>'
+    });
+    Vue.component('app-content',{
+        template:'<div>Content</div>'
+    });
+    //미리 만든 함수를 사용할수 있다. let vm =
+    let vm= new Vue({
+        el: '#app',
+       
+      });
+     (() => {vm})();//즉시실행함수
+
+</script>
+</html>
