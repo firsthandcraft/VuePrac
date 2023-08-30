@@ -13,13 +13,19 @@
 
         <app-header></app-header>
         <app-content></app-content>
+        <app-footer></app-footer>
 
     </div>
-
+    <p>컴포넌트와 인스턴스와의 관계</p>
+    <div id="app2">
+        <app-header></app-header>
+        <app-footer></app-footer>
+    </div>
 </body>
 
 
 <script>
+    //전역컴포넌트
    // Vue.component('컴포넌트이름',컴포넌트내용);
     Vue.component('app-header',{
         template:'<h1>Header</h1>'
@@ -27,12 +33,24 @@
     Vue.component('app-content',{
         template:'<div>Content</div>'
     });
+    Vue.component('컴포넌트이름','컴포넌트내용')
     //미리 만든 함수를 사용할수 있다. let vm =
     let vm= new Vue({
         el: '#app',
-       
+        components:{//지역컴포넌트 등록방식 //s가 붙는거 중요
+            '키':'벨류',
+            '컴포넌트이름':'컴포넌트내용',
+            'app-footer':{
+                template:'<footer>footer</footer>'
+            }
+        }
       });
      (() => {vm})();//즉시실행함수
-
+      //컴포넌트와 인스턴스와의 관계 : 인스턴스를 생성할때 마다 전역은 할필요가 없지만 지역은 필요하다. 
+      // app-footer 인스턴스를 생성안해서 안나오는것
+      new Vue({
+        el: '#app2',
+        
+      });
 </script>
 </html>
