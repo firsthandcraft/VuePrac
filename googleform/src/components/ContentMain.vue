@@ -14,17 +14,18 @@
                 </div>
                 <!--질문유형-->
                 <div class="selectWrap">
-                    <ul class="select_header" @click="toggleDropdown">
+                    <ul class="select_header" @click="toggleDropdown" >
                         <li class="selected_option">
                             <p>
-                                <span class="material-symbols-outlined">{{ selectedOption.question_img }}</span>
-                                {{ selectedOption.question }}
+                                <span class="material-symbols-outlined">{{ modalOption.question_img }}</span>
+                                {{ modalOption.question }}
                             </p>
                             <span class="material-symbols-outlined">expand_more</span>
                         </li>
                     </ul>
                     <!-- 질문내용 -->
-                    <ul class="options" v-if="dropdownOpen">
+                    <ul class="options" v-if="item.modal==true">
+                        {{item.modal}}
                         <li v-for="d in options" :key="d.question" @click="selectOption(d)" >
                             <span class="material-symbols-outlined">{{ d.question_img }}</span>
                             {{ d.question }}
@@ -34,25 +35,24 @@
             </div>
             <!-- 설명이미지  -->
             <div class="cc_img" >
-                <img :src="item.img" :alt="img_file" style="width:200px" />
-
+                <img :src="item.img" alt="optionimg" style="width:200px" v-if="item.img!=''"/>
             </div>
             <div class="cc_middle">
-                <div v-if="selectedOption.value == 'ShortAnswer'">
+                <div v-if="modalOption.value == 'ShortAnswer'">
                     <div class="inputType">
                         <p>
                             <input type="text" placeholder="단답형 텍스트" disabled > 
                         </p>
                     </div>
                 </div>
-                <div v-if="selectedOption.value == 'Long'">
+                <div v-if="modalOption.value == 'Long'">
                     <div class="inputType">
                         <p>
                             <input type="text" placeholder="장문형 텍스트" disabled> 
                         </p>
                     </div>
                 </div>
-                <div v-if="selectedOption.value == 'MultipleChoiceQuestions'">
+                <div v-if="modalOption.value == 'MultipleChoiceQuestions'">
                     <ul>
                         <li class="inputType" v-for="(d,index) in radio_option.radio_data" :key="d">
                             <span class="material-symbols-outlined">circle</span>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <!-- 체크박스 -->
-                <div v-if="selectedOption.value == 'CheckBox'">
+                <div v-if="modalOption.value == 'CheckBox'">
                     <ul>
                         <li class="inputType" v-for="(c,index) in check_option.check_data" :key="c">
                             <span class="material-symbols-outlined">square</span>
@@ -108,7 +108,7 @@
                         </p>
                     </div>
                 </div>
-                <div v-if="selectedOption.value == 'FileUpload'">
+                <div v-if="modalOption.value == 'FileUpload'">
                     <input type="file" disabled>
                 </div>
             </div>
@@ -161,7 +161,9 @@ import { reactive, ref,defineComponent } from "vue";
                 qustion_type:"",
                 qustion_data :[],
                 etc:"",
-                necessary:"",}
+                necessary:"",
+                modal:"false",
+                }
             );
             //02.세부 질문 추가 +
             const addComponent = () => {
@@ -172,6 +174,7 @@ import { reactive, ref,defineComponent } from "vue";
                         qustion_data :[],
                         etc:"",
                         necessary:"",
+                        modal:"false",
                     });
                     allData.data.push(newComponent);
                     console.log(allData.data)
@@ -185,6 +188,7 @@ import { reactive, ref,defineComponent } from "vue";
                 qustion_data :[],
                 etc:"",
                 necessary:"",
+                modal:"false",
             });
            
             //02.질문 제목 데이터에 넣음
@@ -198,8 +202,7 @@ import { reactive, ref,defineComponent } from "vue";
                 console.log(allData.data)
             }
             //03.이미지 
-            const img_file = reactive([]);//이미지 URL저장 배열
-            const fileChange = function(e,itemId){//input img 이미지를 넣을때
+            const fileChange = function(e,itemId){//inputfile에이미지를 넣을때
                 const selectedFile = e.target.files[0];
                 const img_reader = new FileReader();//새로운 파일 리더
                 const itemToUpdate = allData.data.find(item => item === itemId);
@@ -223,12 +226,20 @@ import { reactive, ref,defineComponent } from "vue";
                 { question: '파일업로드', question_img: 'cloud_upload',value:'FileUpload' },
             ]);
            //질문유형_모달창
-            const dropdownOpen = ref(false);
-            const toggleDropdown = () => {
-                dropdownOpen.value = !dropdownOpen.value;
+           const modalOption = ref(options[0]);//기본값
+           console.log(modalOption)//단답형
+
+            const toggleDropdown = function(e,itemId ){
+                const itemToUpdate = allData.data.find(item => item === itemId);
+                if (itemToUpdate.modal = false) {
+                    itemToUpdate.modal = true; // 'modal' 프로퍼티 추가
+                    console.log( itemToUpdate.modal )
+                }
+                // dropdownOpen = !dropdownOpen;
+
             };
             //질문유형_선택된 것
-            const selectedOption = ref(options[0]);//기본값
+            
             
             /** 알고 가기 - 라디오나 체크박스를 총데이터 배열에 안넣는 이유는?
             * =>  질문유형 선택 창에서 라디오질문을 선택하고 데이터를 넣다가 다시 체크박스로 바꿔서 쓰다가 다시 라디오로 넘어갈때 기존 데이터가 남아있게 하기 위해
@@ -292,8 +303,8 @@ import { reactive, ref,defineComponent } from "vue";
             }
            //06.질문유형_선택
             const selectOption = (option) => {
-                selectedOption.value = option;
-                dropdownOpen.value = false;
+                modalOption.value = option;
+                //dropdownOpen.value = false;
                 //console.log(option.value)
                 data_card.qustion_type=option.value//06.질문유형 총데이터 값에 넣음
                 if(data_card.qustion_type=="MultipleChoiceQuestions"){//06-1.라디오 버튼일 경우
@@ -325,9 +336,10 @@ import { reactive, ref,defineComponent } from "vue";
       
             return {
                 data_card,titleChange,
-                fileChange,img_file,
-                dropdownOpen, toggleDropdown, 
-                options, selectOption,selectedOption,
+                fileChange,
+                
+                toggleDropdown, 
+                options, selectOption,modalOption,
                 radio_option,add_radio,radioOptionCount,add_radio_option,remove_radio_option,setRadioInput,radio_etc,
                 check_option,add_check,checkOptionCount,add_check_option,remove_check_option,setCheckInput,check_etc,
                 necessary_check,
