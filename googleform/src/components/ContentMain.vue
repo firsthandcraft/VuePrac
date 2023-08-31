@@ -117,9 +117,8 @@
             <div class="cc_bottom">
                 <p @click="content_copy($event,item)"><span class="material-symbols-outlined">content_copy</span></p>
                 <p @click="content_delete($event,item,index)"><span class="material-symbols-outlined">delete</span></p>
-                <p class="necessary" @change="necessary_check($event,item)">                               
-                    <input id="toggle" type="checkbox" :value="item.necessary"  >
-                    <label for="toggle" class="toggleSwitch">
+                <p class="necessary" @click="necessary_check($event,item)">                               
+                    <label  class="toggleSwitch" :class="{ active: item.necessary === true}">
                         <span class="toggleButton"></span>
                     </label>
                 </p>
@@ -319,10 +318,16 @@ import { reactive, ref,defineComponent } from "vue";
             }
             //08.필수체크
             const necessary_check = (e,itemId,) =>{
-                const itemToUpdate = allData.data.find(item => item === itemId);
-                itemToUpdate.necessary=e.target.checked
-                console.log(itemToUpdate)
-                console.log(allData.data)
+                // const itemToUpdate = allData.data.find(item => item === itemId);
+                // itemToUpdate.necessary=e.target.checked
+                // console.log(itemToUpdate)
+                // console.log(allData.data)
+                 const itemToUpdate = allData.data.find(item => item === itemId);
+                if (itemToUpdate.necessary == false ||itemToUpdate.necessary == "false") {
+                    itemToUpdate.necessary = true; // 'necessary' 프로퍼티 추가
+                }else{
+                    itemToUpdate.necessary = !itemToUpdate.necessary;
+                } console.log(allData.data)
                 
             };
             //복제
@@ -393,8 +398,8 @@ import { reactive, ref,defineComponent } from "vue";
     .toggleSwitch {width:36px;height:14px;display: block;position: relative;border-radius: 30px;background-color:#9b9b9b;box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0,0,0,.05), 0 0.1875rem 0.1875rem 0 rgba(0,0,0,.1), 0 0.1875rem 0.0625rem 0 rgba(0,0,0,.05);cursor: pointer;}
     .toggleSwitch::before{content:"필수";position:absolute;top:calc(50% - 10px);left:-40px;}
     .toggleSwitch .toggleButton {width:20px;height:20px;position: absolute;top: 50%;left: calc(100% - 38px);transform: translateY(-50%);border-radius: 50%;background: #fff;}
-    #toggle:checked ~ .toggleSwitch {background:rgba(104, 58, 183, 0.338);} 
+    .toggleSwitch.active {background:rgba(104, 58, 183, 0.338);} 
     /* b9b9b9 */
-    #toggle:checked ~ .toggleSwitch .toggleButton { left:19px;background:rgb(103, 58, 183);}
+   .toggleSwitch.active .toggleButton { left:19px;background:rgb(103, 58, 183);}
     .toggleSwitch, .toggleButton{transition: all 0.2s ease-in;}
 </style>
