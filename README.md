@@ -1,14 +1,18 @@
-<<<<<<< HEAD
-# vuedongsan 쇼핑몰
-# meomo application
-# todo application
-# google form application
+# vue.js 
 
-# 한권으로 배우는 Vue.js
-# 정대리 vue
+### vuedongsan 쇼핑몰
+### meomo application
+### todo application
+### google form application
+### 캡틴판교 vue by inflearn
+### 수코딩 vue
 
-# 설치방법
-# vite, cdn, npm으로 설치 
+
+## 설치방법
+### vite, cdn, npm으로 설치 
+
+## 환경
+### vuetify, vuex
 
 
 ## CSS 관리방법 
