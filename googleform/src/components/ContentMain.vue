@@ -23,7 +23,7 @@
                             <span class="material-symbols-outlined">expand_more</span>
                         </li>
                     </ul>
-                    <!-- 질문내용  :class="{ active: isActive }" -->
+                    <!-- 질문내용 -->
                     <ul class="options"  v-if="item.modal">
                         <li v-for="d in options" :key="d.question" @click="selectOption($event,item,d)" >
                             <span class="material-symbols-outlined">{{ d.question_img }}</span>
@@ -34,6 +34,7 @@
             </div>
             <!-- 설명이미지  -->
             <div class="cc_img" >
+                <button v-if="item.img!=''"  @click="deleteImg($event,item)">삭제</button>
                 <img :src="item.img" alt="optionimg" style="width:200px" v-if="item.img!=''"/>
             </div>
             <div class="cc_middle">
@@ -57,7 +58,6 @@
                             <span class="material-symbols-outlined">circle</span>
                             <p>
                                 <input type="text"   :value="d" @change="setRadioInput($event,item,index)" >
-                                <!-- v-model="item.qustion_data[index]" -->
                             </p>
                             <span class="material-symbols-outlined optiondelete close_btn" v-if="index !== 0" @click="remove_radio_option($event,item,index)">close</span>
                         </li>
@@ -115,21 +115,22 @@
             <!--  -->
             <!--  -->
             <div class="cc_bottom">
-                <p @click="content_copy($event,item)"><span class="material-symbols-outlined">content_copy</span></p>
-                <p @click="content_delete($event,item,index)"><span class="material-symbols-outlined">delete</span></p>
+                <p class="bottom_btn" @click="content_copy($event,item)"><span class="material-symbols-outlined">content_copy</span></p>
+                <p class="bottom_btn" @click="content_delete($event,item,index)"><span class="material-symbols-outlined">delete</span></p>
                 <p class="necessary" @click="necessary_check($event,item)">                               
                     <label  class="toggleSwitch" :class="{ active: item.necessary === true}">
-                        <span class="toggleButton"></span>
+                        <span class="toggleButton "></span>
                     </label>
                 </p>
-                <p><span class="material-symbols-outlined">more_vert</span></p>
             </div>
         </article>
+      
     </div>
        
 </template>
 <script>
 import { reactive, ref,defineComponent } from "vue";
+
     export default defineComponent({//01,02,03... 순서가 있는것은 데이터에 넣는 기능입니다.
         // props: {
         //    copyText:{
@@ -313,22 +314,16 @@ import { reactive, ref,defineComponent } from "vue";
             //07보여지는 질문유형_기호이미지
             const findOptionValueImg=function(qustionType) {
                 const foundOptionImg = this.options.find(option => option.value === qustionType);
-                // console.log('foundOptionImg',foundOptionImg)
                 return foundOptionImg ? foundOptionImg.question_img : '';
             }
             //08.필수체크
             const necessary_check = (e,itemId,) =>{
-                // const itemToUpdate = allData.data.find(item => item === itemId);
-                // itemToUpdate.necessary=e.target.checked
-                // console.log(itemToUpdate)
-                // console.log(allData.data)
-                 const itemToUpdate = allData.data.find(item => item === itemId);
+                const itemToUpdate = allData.data.find(item => item === itemId);
                 if (itemToUpdate.necessary == false ||itemToUpdate.necessary == "false") {
                     itemToUpdate.necessary = true; // 'necessary' 프로퍼티 추가
                 }else{
                     itemToUpdate.necessary = !itemToUpdate.necessary;
                 } console.log(allData.data)
-                
             };
             //복제
              const content_copy =function(e,itemId,){
@@ -351,11 +346,17 @@ import { reactive, ref,defineComponent } from "vue";
                 console.log( )
                 allData.data.splice(allData.data.indexOf(itemToUpdate), 1);
              };
-      
+            //이미지 삭제
+            const deleteImg = function(e,itemId){
+                const itemToUpdate = allData.data.find(item => item === itemId);
+                console.log(itemToUpdate);
+                itemToUpdate.img = '';
+                console.log(itemToUpdate.img);
+            };
             return {
                 data_card,titleChange,
                 fileChange,
-                toggleDropdown, 
+                toggleDropdown,
                 options, selectOption,findOptionValue,findOptionValueImg,
                 add_radio_option,remove_radio_option,setRadioInput,radio_etc,
                 add_check_option,remove_check_option,setCheckInput,check_etc,
@@ -363,6 +364,7 @@ import { reactive, ref,defineComponent } from "vue";
                 content_copy,content_delete,
                 addComponent,
                 allData,//allData
+                deleteImg,
             };
         },
         methods: {
@@ -392,6 +394,7 @@ import { reactive, ref,defineComponent } from "vue";
     /* 하단 */
     .cc_bottom{margin-top:20px; display: flex;justify-content:end; align-items:center;border-top:1px solid #dadce0;height: 64px;}
     .cc_bottom p{width:48px;height:48px;display:flex;justify-content:center;align-items:center;}
+    .cc_bottom .bottom_btn:hover{background-color: rgba(95,99,104,.04);border-radius:50%;}
     .cc_bottom p span{display:block;}
     /* 필수 버튼 */
     .cc_bottom .necessary{width: 100px;justify-content:end;}

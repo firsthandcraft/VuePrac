@@ -8,24 +8,24 @@
             <span>신청일자</span><input type="date" placeholder="일자">
             <span>마감일자</span><input type="date" placeholder="일자">
         </article>
-        <!-- 선택응답 -->
-        <!-- <div v-for="(component, index) in clonedComponents" :key="index"> -->
+
             <ContentMain />
-            <!-- :copyText="component.data"  -->
-            <!-- @contentCopyEvent="handleContentCopy" -->
-        <!-- </div> -->
-        <ContentNav/>
-        <EmitTest/>
+
+        <!-- <ContentNav/> -->
+        <!-- <EmitTest/> -->
+
    </div>
 </template>
 <script>
 import { ref } from 'vue';
 import ContentMain from './ContentMain.vue';
-import ContentNav from './ContentNav.vue';
-import EmitTest from './EmitTest.vue';
+// import ContentNav from './ContentNav.vue';
+// import EmitTest from './EmitTest.vue';
+// import SortableTest from './SortableTest.vue';
+
 
     export default{
-        components:{ContentMain,ContentNav,EmitTest},
+        components:{ContentMain,},
          setup() {
            
             // const handleContentCopy = (data) =>{
