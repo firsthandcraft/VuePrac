@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>템플릿문법</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <a href="https://joshua1988.github.io/vue-camp/vue/template.html">뷰템플릿문법</a>
+    <p>데이터 바인딩과 디렉티브가 있다.</p>
+    <h3>databinding</h3>
+    <p>num 이 바뀌면 같이 바뀐다.</p>
+    <img src="./img/databinding1.png" alt="">
+    <div id="app">
+        <p>{{num}}</p>
+        <p>{{doubleNum}}</p>
+        <div v-bind:id="uuid" v-bind:class="name">{{num}}</div>
+        <div v-if="loading">Loading</div>
+        <div v-else>test user has been logged in</div>
+        <div v-show="loading">test</div>
+        <p>loading값에 따라서 달라진다.</p>
+        <img src="./img/v-if.png" alt="">
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            num :12,
+            uuid:'abc1234',
+            name:'text-blue',
+            loading:false
+        },
+        computed:{//num 데이터가 바뀌면 같이 바뀐다.
+            doubleNum:function(){
+                return this.num*2;
+            }
+        }
+    })
+</script>
+<style>
+    .text-blue{color: blue;font-weight: bold;}
+</style>
+</html>

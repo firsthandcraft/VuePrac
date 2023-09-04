@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch 속성 vs computed 속성</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+    <div id="app">
+        {{num}}
+        <p>{{doubleNum}}</p>
+        <button v-on:click="increase">click</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            num:10,
+        },
+        computed:{//num 데이터가 바뀌면 같이 바뀐다. //연산 
+            doubleNum:function(){
+                return this.num*2;
+            }
+        },
+        watch:{ //데이터 요청과 같은 무거운것
+            num :function(newValue,oldValue){
+                //this.logText();
+                this.fatchByNumber(newValue);
+                //axios.get(num);
+            }
+        },
+        methods:{
+            increase:function(){
+                this.num=this.num+1;
+            },
+            fatchByNumber:function(num){
+                console.log("watch",num);
+            }
+        }
+    })
+</script>
+</html>

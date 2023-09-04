@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>methods 속성과 v-on 디렉티브를 이용한 키보드, 마우스 이벤트 처리 방법</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <a href="https://v2.ko.vuejs.org/v2/guide/installation.html">공식문서</a>
+    <a href="https://vuejs.org/guide/essentials/forms.html">Form Input Binding 공식 문서</a>
+    <!-- TODO: 인풋박스를 만들고 입력된 값을 p태그에 출력해보세요. -->
+    <div id="app">
+        <button v-on:click="logText">click</button>
+        <input type="text" v-on:keyup.enter="logText">
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        methods:{
+            logText:function(){
+                console.log('clicked')
+            }
+        }
+    })
+</script>
+</html>

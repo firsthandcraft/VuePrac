@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>computed 속성을 이용한 클래스 코드 작성 방법</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+    <div id="app">
+        <!-- <p v-bind:class="{waring:isError}">hello</p> -->
+        <!-- 위처럼 복잡한것을 computed로 -->
+        <p v-bind:class="errorTextColor">hello</p>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            isError:false,
+        },
+        computed:{//num 데이터가 바뀌면 같이 바뀐다. //연산 
+            errorTextColor:function(){
+                return this.isError ? 'warning':null;
+            }
+        },
+        watch:{ //데이터 요청과 같은 무거운것
+            num :function(newValue,oldValue){
+                //this.logText();
+                this.fatchByNumber(newValue);
+                //axios.get(num);
+            }
+        },
+        methods:{
+            increase:function(){
+                this.num=this.num+1;
+            },
+            fatchByNumber:function(num){
+                console.log("watch",num);
+            }
+        }
+    })
+</script>
+<style>
+    .warning{background-color:orange;color: red; font-weight: bold;}
+</style>
+</html>
