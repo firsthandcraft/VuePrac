@@ -9,15 +9,15 @@
   </div>
 </template>
 <script>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 
   export default{
     props: {
-      nameOfChild:{
+      nameOfChild:reactive({
         type:Object,
         required : true, 
-        default: () => ({ name: 'LEGO' }),//부모컴포넌트에서 아무것도 전달 안할때
-      }
+        default: () => ({ name: 'LEGO',familyName:'choi' }),//부모컴포넌트에서 아무것도 전달 안할때
+      })
     },
     computed:{
       sayHello(){
@@ -26,7 +26,9 @@ import { ref } from 'vue';
     },
     setup(props) {
         const switchName= function() {
+          console.log(props)
         props.nameOfChild.name="컴퓨터";
+        console.log(nameOfChild)
         }
         return { 
           switchName

@@ -4,20 +4,14 @@
         <p>이름: {{name}}</p>
         <v-btn @click="changeName()">변경</v-btn>
         <hr>
-        <v-layout row wrap>
-        <v-layout xs12 sm6>
             <UserDetail 
                 :name= "name"
-                :address= "address"
-                :phone = "phone"
-                :hasDog= "hasDog"
+                :familyName= "familyName"
+ 
             ></UserDetail>
             <!-- <UserDetail :nameOfChild="{name:name,familyName:'Cho'}"></UserDetail> -->
-        </v-layout>
-        <v-layout xs12 sm6>
             <UserEdit :nameOfChild="{name:name,familyName:'Cho'}"></UserEdit>
-        </v-layout>
-        </v-layout>
+
     </div>
 </template>
 
@@ -34,7 +28,7 @@ export default {
     setup() {
         let resss= ref({
             name:"Hoza",
-            address:'Seoul',
+            familyName:'familyName',
             phone:'000df0d',
             hasDog:true,
         })
