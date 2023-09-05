@@ -11,7 +11,8 @@ export default {
     //props사용해보기
     props:['propsdata'],
     methods:{
-        sendEvent:function(){
+        sendEvent:function(e){
+            e.prev
             this.$emit('renew');
         }
     }
