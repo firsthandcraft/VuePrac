@@ -1,7 +1,7 @@
 <template>
-  <HelloWorld />
-</template>
 
+</template>
+  <!-- <HelloWorld /> -->
 <script>
 import { defineComponent } from 'vue';
 
@@ -12,7 +12,7 @@ export default defineComponent({
   name: 'HomeView',
 
   components: {
-    HelloWorld,
+   // HelloWorld,
   },
 });
 </script>

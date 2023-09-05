@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-layout >
+      <!--자식-->
       <User/>
     </v-layout >
     <v-main>
