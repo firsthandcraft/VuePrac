@@ -3,44 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>컴포넌트 통신 방법 - 기본</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+    <title>뷰 컴포넌트</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x.x/dist/vue.min.js"></script>
 </head>
 <body>
-    <a href="https://joshua1988.github.io/vue-camp/vue/components-communication.html">컴포넌트 통신 방법 - 기본</a>
-    <img src="./img/props.png" alt="">
+    <a href="https://joshua1988.github.io/vue-camp/vue/components.html#%E1%84%8F%E1%85%A5%E1%86%B7%E1%84%91%E1%85%A9%E1%84%82%E1%85%A5%E1%86%AB%E1%84%90%E1%85%B3-%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC-%E1%84%8F%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%92%E1%85%A7%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8">뷰 컴포넌트</a>
+    <p>컴포넌트는 화면의 영역을 구분하여 개발할 수 있는 뷰의 기능입니다. 컴포넌트 기반으로 화면을 개발하게 되면 코드의 재사용성이 올라가고 빠르게 화면을 제작할 수 있습니다.</p>
     <div id="app">
-        <!-- <app-header v-bind:프롭스속성이름="상위컴포넌트이름"> -->
-        <app-header v-bind:propsdata="message">
 
-        </app-header>
-        <p>Root에서 보면</p>
-        <img src="./img/props1.png" alt="" width="700px">
-        <p>appHeader를 보면 </p>
-        <img src="./img/props2.png" alt="" width="700px">
-        <app-content v-bind:contentdata="num"></app-content>
+        <app-header></app-header>
+        <app-content></app-content>
+        <app-footer></app-footer>
+
+    </div>
+    <p>컴포넌트와 인스턴스와의 관계</p>
+    <div id="app2">
+        <app-header></app-header>
+        <app-footer></app-footer>
     </div>
 </body>
+
+
 <script>
-    var appHeader ={
-        template:'<h1>{{propsdata}}</h1>',
-        props:['propsdata']
-    }
-    var appContent ={
-        template:'<div>{{contentdata}}</div>',
-        props:['contentdata']
-    }
-    new Vue({
-        el: '#app', 
-        components: {
-            'app-header': appHeader,
-            'app-content': appContent
-        }, 
-        data :{
-            message :'hi',
-            num : 10
+    //전역컴포넌트
+   // Vue.component('컴포넌트이름',컴포넌트내용);
+    Vue.component('app-header',{
+        template:'<h1>Header</h1>'
+    });
+    Vue.component('app-content',{
+        template:'<div>Content</div>'
+    });
+    Vue.component('컴포넌트이름','컴포넌트내용')
+    //미리 만든 함수를 사용할수 있다. let vm =
+    let vm= new Vue({
+        el: '#app',
+        components:{//지역컴포넌트 등록방식 //s가 붙는거 중요
+            '키':'벨류',
+            '컴포넌트이름':'컴포넌트내용',
+            'app-footer':{
+                template:'<footer>footer</footer>'
+            }
         }
-    })
+      });
+     (() => {vm})();//즉시실행함수
+      //컴포넌트와 인스턴스와의 관계 : 인스턴스를 생성할때 마다 전역은 할필요가 없지만 지역은 필요하다. 
+      // app-footer 인스턴스를 생성안해서 안나오는것
+      new Vue({
+        el: '#app2',
+        
+      });
 </script>
 </html>
