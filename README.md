@@ -41,4 +41,4 @@
 [watch 속성 vs computed 속성비](vue-captain/playground_day1/watchcomputed17.html)
 
 #### 섹션 10
-프로젝트 생성 도구 - Vue CLI
+[프로젝트 생성 도구 - Vue CLI](vue-captain/vuecli/cliver3_vue_ver2.txt)
