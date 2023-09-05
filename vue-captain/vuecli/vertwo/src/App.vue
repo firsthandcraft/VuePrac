@@ -1,17 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{ str }}
+    <!-- <app-header v-bind:프롭스속성이름="상위컴포넌트 이름"></app-header> -->
+    <app-header v-bind:propsdata="str" v-on:renew="renewStr"></app-header>
   </div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+// new Vue({
+//   data:{}
+// })
+// var AppHeader ={
+//   template:'<header>appheader</header>'
+// }
+import AppHeader from './components/AppHeader.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    'app-header':AppHeader
+  },
+  methods:{
+    renewStr:function(){
+      this.str ='hi'
+    }
+  },
+  data: function(){
+    return {//props사용해보기
+      str:'Headerprops'
+    }
   }
 }
 </script>
