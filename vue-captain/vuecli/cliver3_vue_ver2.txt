@@ -1,0 +1,17 @@
+node -v 
+npm -v
+# 설치
+=>npm install -g @vue/cli
+
+=>vue create vertwo
+Vue CLI v5.0.8
+? Please pick a preset: (Use arrow keys)
+  Default ([Vue 3] babel, eslint) 
+> Default ([Vue 2] babel, eslint) 
+  Manually select features 
+
+
+C:\Users\uintone\Downloads\vue_basic\vue-captain\vuecli>cd vertwo
+
+C:\Users\uintone\Downloads\vue_basic\vue-captain\vuecli\vertwo>npm run serve
+=> npm run serve
