@@ -1,29 +1,40 @@
 <template>
        <ul class="contentNav" :style="{ top: bannerTop }">
-            <li><span class="material-symbols-outlined">add_circle</span></li>
+            <li @click="emitEvent"><span class="material-symbols-outlined">add_circle</span></li>
         </ul> 
 </template>
 <script>
 import { ref, reactive, onMounted } from 'vue';
 
     export default{
-        setup() {
+        setup(props, { emit }) {
             const floatPosition = 100; // 예시로 값 설정
             const currentTop = ref(0);
             const bannerTop = ref('0px'); // 초기값 설정
-
             const handleScroll = () => {
             currentTop.value = window.scrollY;
             bannerTop.value = `${currentTop.value + floatPosition}px`;
             };
-
             onMounted(() => {
             window.addEventListener('scroll', handleScroll);
             handleScroll(); // 초기 스크롤 위치 설정
             });
+            //복제 이벤트버스 전달
+            const emitEvent = () => {
+                const newComponent  = ({
+                        title :"navdata",
+                        img :"",
+                        qustion_type:"ShortAnswer",
+                        qustion_data :[],
+                        etc:false,
+                        necessary:false,
+                        modal:false,
+                });
+                emit('custom-event', newComponent); // 이벤트 발생 및 데이터 전달
+            };
 
             return {floatPosition,currentTop,
-            bannerTop,handleScroll,
+            bannerTop,handleScroll,emitEvent
             };
         },
     };
