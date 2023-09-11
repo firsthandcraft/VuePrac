@@ -1,3 +1,7 @@
+플러그인 설치 
+vetur
+Tslint
+
 https://cli.vuejs.org/#getting-started
 vue cli 
 시작하기
@@ -22,3 +26,14 @@ vue ui
 
 #옵션 보기 
 vue create --help
+
+
+#연습 
+vuetodo파일에서 todo 폴더 삭제하기
+
+$ rm -rf todo  
+
+
+#yarn 시작 하기 
+ $ cd my-project
+ $ yarn serve
