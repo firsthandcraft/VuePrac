@@ -2,7 +2,6 @@
   <div class="ground">
     <Header/>
     <Content />
-    <p>------------------------------- Ground view -------------------------------</p>
   </div>
 </template>
 

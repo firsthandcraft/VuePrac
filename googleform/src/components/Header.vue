@@ -11,7 +11,7 @@
             </div>
             <div class="ht_right">
                 <p><span class="material-symbols-outlined">palette</span></p>
-                <p><span class="material-symbols-outlined">visibility</span></p>
+                <p><span class="material-symbols-outlined" >visibility</span></p>
                 <!-- <p><span class="material-symbols-outlined">undo</span></p> -->
                 <p><span class="material-symbols-outlined">send</span></p>
                 <p><span class="material-symbols-outlined">more_vert</span></p>

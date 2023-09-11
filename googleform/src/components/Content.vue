@@ -24,11 +24,11 @@
             @radioAdd-change="radioAddEvent($event,index)"
             @radioRemove-change="radioRemoveEvent($event,index,idx)"
             @remove-change="removeEvent($event,index)"
+            @copy-change="copyEvent($event,index)"
+            @necessary-change="necessaryEvent($event,index)"
+            @img-delete="deleteImgEvent($event,index)"
+
         ></ContentMain2>
-
-        <!-- <ContentMain/> -->
-   
-
 
    </div>
 </template>
@@ -83,8 +83,12 @@ import ContentNav from './ContentNav.vue';
                 alldata2.data3[index].img=data;
             }
             const optionEvent=(data,index)=>{ //질문타입
-                alldata2.data3[index].qustion_type=data;
-                if(data=="MultipleChoiceQuestions"){//라디오 버튼일 경우
+                console.log('ssss',data)
+                if(alldata2.data3[index].qustion_type==data){
+                    console.log("없다.")
+                }else{
+                    alldata2.data3[index].qustion_type=data
+                    if(data=="MultipleChoiceQuestions"){//라디오 버튼일 경우
                     alldata2.data3[index].qustion_data=['옵션1']
                     alldata2.data3[index].etc = false;;
                 } else if(data=="CheckBox"){//체크박스일경우
@@ -93,6 +97,7 @@ import ContentNav from './ContentNav.vue';
                 } else{
                     alldata2.data3[index].qustion_data=['']
                     alldata2.data3[index].etc =false;
+                }
                 }
             }
             const radioInputEvent=(data,index)=>{ //옵션값이름변경
@@ -111,7 +116,30 @@ import ContentNav from './ContentNav.vue';
             const removeEvent=(data,index)=>{ //선택질문삭제
                 alldata2.data3.splice(index, 1);
             }
-
+            const necessaryEvent=(data,index)=>{ //선택질문삭제
+                alldata2.data3[index].necessary =! alldata2.data3[index].necessary
+            }
+            const copyEvent = (data,index)=>{
+                let copyArray = [];
+                for(let i=0;  i<alldata2.data3[index].qustion_data.length; i++){
+                    copyArray.push(alldata2.data3[index].qustion_data[i])
+                }
+                let copyAlldata ={ 
+                    title :alldata2.data3[index].title,
+                    img :alldata2.data3[index].img,
+                    qustion_type:alldata2.data3[index].qustion_type,
+                    qustion_data :copyArray,
+                    etc:alldata2.data3[index].etc,
+                    necessary:alldata2.data3[index].necessary,
+                    modal:alldata2.data3[index].modal,
+                }
+                alldata2.data3.push(copyAlldata); 
+            }
+            //이미지 삭제 
+            const deleteImgEvent =(data,index) =>{
+                alldata2.data3[index].img = '';
+            }
+            
             //props로 전달된 
             return {
                 alldata2,
@@ -119,13 +147,11 @@ import ContentNav from './ContentNav.vue';
                 titleEvent,
                 fileChange,imgEvent,optionEvent,radioInputEvent,radioEtcEvent,radioAddEvent,radioRemoveEvent,
                 indexData,
-                removeEvent,
-                
+                removeEvent,copyEvent,necessaryEvent,
+                deleteImgEvent,
             };
         }, 
-        
     }
-
 </script>
 <style scoped>
     @import url("../index.css");
