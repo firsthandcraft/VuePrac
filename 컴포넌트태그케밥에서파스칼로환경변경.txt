@@ -1,0 +1,17 @@
+#vue.config 에서 
+-------------
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true,
+  lintOnSave:false,//multi-word-component-names
+})
+--------------
+lintOnSave:false,
+로 설정 하기 
+
+또는 
+#package.json에서 
+ "rules": {"vue/muti-word-component-names":0}
+ -----------------
+ "vue/muti-word-component-names":0
+ 로 설정 하기 
