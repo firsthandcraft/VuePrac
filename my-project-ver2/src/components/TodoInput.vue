@@ -18,19 +18,9 @@ export default {
     methods:{
         addTodo:function(){
             if(this.newTodoItem !==''){
-                let obj ={
-                completed:false,
-                item:this.newTodoItem
-                };
-                //localStorage에 저장하기
-                //localStorage는 f12-> application안의 storage에있다. 
-                // localStorage.setItem(this.newTodoItem,this.newTodoItem)
-                // obj가 생기고 이후 
-                localStorage.setItem(this.newTodoItem,JSON.stringify(obj))//스트링으로 자바스크립트객체를 변환해준다.
-                // localStorage.setItem(this.newTodoItem,JSON.stringify(obj)) 안하면 objobj로 나타난다.
-                console.log(this.newTodoItem);
-                //저장후 
-                
+              // this.$emit('이벤트이름',인자1,인자2...)
+              this.$emit('addTodoItem',this.newTodoItem)
+              this.clearInput();
             }
             
            

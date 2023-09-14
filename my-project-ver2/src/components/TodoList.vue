@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <li class="shadow" v-for="(todoItem,index) in todoItems" v-bind:key="todoItem.item">
+            <li class="shadow" v-for="(todoItem,index) in propsdata" v-bind:key="todoItem.item">
                 <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted:todoItem.completed}" v-on:click="toggleComplete(todoItem, index)"></i>
                 <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
                 <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
@@ -13,42 +13,21 @@
 </template>
 <script>
 export default {
-    data: function(){
-        return {
-            todoItems: []
-        }
-    },
-    created: function(){
-        if(localStorage.length>0){
-            for(let i =0; i<localStorage.length;i++){
-                if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
-                    // this.todoItems.push(localStorage.key(i));
-                    //localStorage.getItem(localStorage.key(i));
-                    // console.log("todo-local-created")
-                    // console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));//JSON에서 String에서 다시 꺼내기,
-                    // // console.log(localStorage.key(i)) 
-                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-
-                }
-            
-            }
-           
-        }
-    },
     setup() {
         
     }, 
+    props:[
+    'propsdata'
+    ],
     methods:{
         removeTodo:function(todoItem,index){
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index,1)
+          console.log("sssssssremoveTodo")
+            this.$emit('removeItem',todoItem,index)
         },
         toggleComplete:function(todoItem,index){
-            todoItem.completed=!todoItem.completed;
-            //로컬스토리지 데이터 갱신
-            localStorage.removeItem(todoItem.item);
-            localStorage.setItem(todoItem.item,JSON.stringify(todoItem));
-            console.log(index)
+            
+            //로컬스토리지 데이터 갱신 toggleItem
+            this.$emit('toggleItem',todoItem,index)
         }
     }
 }
