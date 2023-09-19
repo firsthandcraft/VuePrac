@@ -9,4 +9,7 @@
  
  01. index.html에 fontawesome link 넣기 
  02. ToddHeader.vue/TodoFooter.vue/TodoInput.vue/TodoList.vue 생성
- 
+
+ ### ver2는 
+ ** 유의 데이터를 LcalStorage에 넣고 데이터를 기입한 후 추가 버튼 누르고 f5를 눌러야 데이터가 아래에 추가를 안해도된다.
+ 실시간 데이터 바인딩이 가능하다.
