@@ -1,6 +1,7 @@
 <template>
     <header>
         <h1>TODO it!</h1>
+        <!-- vuex-store이용해보기<h1>{{ this.$store.state.headerText }}</h1> -->
     </header>
 </template>
 <script>

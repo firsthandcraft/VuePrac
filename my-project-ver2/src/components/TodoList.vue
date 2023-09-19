@@ -1,14 +1,17 @@
 <template>
     <div>
-        <ul>
-            <li class="shadow" v-for="(todoItem,index) in propsdata" v-bind:key="todoItem.item">
-                <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted:todoItem.completed}" v-on:click="toggleComplete(todoItem, index)"></i>
-                <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
-                <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
-                    <i class="removeBtn fas fa-trash-alt"></i>
-                </span>
-            </li>
-        </ul>
+      <!-- ul대신transitiongroup -->
+      <transition-group name="list" tag="ul">
+        <!-- v-for="(todoItem,index) in propsdata -->
+          <li class="shadow" v-for="(todoItem,index) in this.$store.state.todoItems" v-bind:key="todoItem.item">
+              <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted:todoItem.completed}" v-on:click="toggleComplete(todoItem, index)"></i>
+              <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
+              <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+                  <i class=" fas fa-trash-alt"></i>
+              </span>
+          </li>
+      </transition-group>
+        
     </div>
 </template>
 <script>
@@ -16,18 +19,24 @@ export default {
     setup() {
         
     }, 
-    props:[
-    'propsdata'
-    ],
+    // props:[
+    // 'propsdata'
+    // ],
     methods:{
-        removeTodo:function(todoItem,index){
-          console.log("sssssssremoveTodo")
-            this.$emit('removeItem',todoItem,index)
+        removeTodo(todoItem,index){
+          console.log("rrrremoveOtodo")
+            //this.$emit('removeItem',todoItem,index);
+            // const obj={
+            //   todoItem,
+            //   index:index
+            // }
+            this.$store.commit('removeOneItem',{todoItem,index});
+            // this.$store.commit('removeOneItem',obj);
         },
-        toggleComplete:function(todoItem,index){
-            
+        toggleComplete(todoItem,index){
             //로컬스토리지 데이터 갱신 toggleItem
-            this.$emit('toggleItem',todoItem,index)
+             //this.$emit('toggleItem',todoItem,index)
+            this.$store.commit('toggleOneItem', {todoItem,index});
         }
     }
 }
@@ -66,4 +75,7 @@ li {
   margin-left: auto;
   color: #de4343;
 }
+/* tradition */
+.list-enter-active,.list-leave-active{transition:all 0.5s;}
+.list-enter,.list-leave-to{opacity:0;transition:translateY(30px);}
 </style>
