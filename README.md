@@ -9,7 +9,7 @@
 
 [06-04:: Nested Router](/06-04/README.md)
 
-[06-05:: Nested Router](/06-05/README.md)
+[06-05:: Named View](/06-05/README.md)
 
 ---
 
