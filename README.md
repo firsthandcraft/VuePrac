@@ -1,5 +1,14 @@
 # 수코딩과 함께하는 vue 기초 수업
 
+## 목록
+[06-01:: Lifecycle](/06-1/README.md)
+
+[06-02:: OptionsAPI / CompositionAPI](/06-2/README.md)
+
+[06-03:: Router](/06-3/README.md)
+
+---
+
 [설치하기](VuePrac/guide.txt) 
 
 실행
