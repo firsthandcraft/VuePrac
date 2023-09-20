@@ -4,7 +4,8 @@
 여러 개의 뷰를 중첩하지 않고 동시에 표시해야 하는 경우
 
 ### 결과화면 
-![Uploading 20230920_144232.png…]()
+![20230920_144232](https://github.com/firsthandcraft/VuePrac/assets/97497153/dc03d884-0baf-4e07-8046-471a533b75ae)
+
 
 
 ## Setting
