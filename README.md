@@ -5,7 +5,7 @@
 
 [06-02:: OptionsAPI / CompositionAPI](/06-2/README.md)
 
-[06-03:: Router](/06-3/README.md)
+[06-03:: Router](/06-03/README.md)
 
 ---
 
