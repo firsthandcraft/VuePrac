@@ -7,6 +7,8 @@
 
 [06-03:: Router](/06-03/README.md)
 
+[06-04:: Nested Router](/06-04/README.md)
+
 ---
 
 [설치하기](VuePrac/guide.txt) 
