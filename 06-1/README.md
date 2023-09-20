@@ -3,6 +3,7 @@
 
 [Lifecycle](https://vuejs.org/guide/essentials/lifecycle.html)  / 
 [생명주기훅](https://v3-docs.vuejs-korea.org/guide/essentials/lifecycle.html)
+![lifecycle 16e4c08e](https://github.com/firsthandcraft/VuePrac/assets/97497153/f1f89ac5-f992-4c4b-9f2a-543e0e136d7c)
 
 ▽ setup(compositionAPI)
 
