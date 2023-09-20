@@ -5,6 +5,18 @@
 
 Nested-Router(중첩된 라우트)는 
 <router-view>를 자식인 하위 컴포넌트에도 넣는것이다. 
+![20230920_140024](https://github.com/firsthandcraft/VuePrac/assets/97497153/d6d54a70-3812-4178-8a24-e053c013f7f3)
+
+
+### 결과화면 
+#### index화면
+![20230920_142736](https://github.com/firsthandcraft/VuePrac/assets/97497153/1b0c3edc-9e8c-4522-b5d4-c38a2bd3f34f)
+
+#### homeview로 들어간 화면 (기본defaultview로 되어잇다.)
+![20230920_142746](https://github.com/firsthandcraft/VuePrac/assets/97497153/8867052e-d600-45ca-8cd3-89f679172d1c)
+
+#### firstChidView로 들어간 화면
+![20230920_142754](https://github.com/firsthandcraft/VuePrac/assets/97497153/e9f6b995-df37-48fd-b17e-c62ffddadd31)
 
 
 ## Setting
