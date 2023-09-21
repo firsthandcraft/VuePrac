@@ -3,10 +3,12 @@
       <!-- ul대신transitiongroup -->
       <transition-group name="list" tag="ul">
         <!-- v-for="(todoItem,index) in propsdata -->
-          <li class="shadow" v-for="(todoItem,index) in this.$store.state.todoItems" v-bind:key="todoItem.item">
-              <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted:todoItem.completed}" v-on:click="toggleComplete(todoItem, index)"></i>
+          <li class="shadow" v-for="(todoItem,index) in this.getTodoItems" v-bind:key="todoItem.item">
+              <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted:todoItem.completed}" v-on:click="toggleComplete({todoItem, index})"></i>
+              <!-- mutations 떄매 toggleComplete v-on:click="toggleComplete(todoItem, index)" 에서 {} 씌우기-->
               <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
-              <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+              <span class="removeBtn" v-on:click="removeTodo({todoItem, index})">
+                <!-- mutations 떄매 removeTodo v-on:click="removeTodo(todoItem, index)" 에서 {} 씌우기-->
                   <i class=" fas fa-trash-alt"></i>
               </span>
           </li>
@@ -15,29 +17,39 @@
     </div>
 </template>
 <script>
+import { mapGetters, mapMutations } from 'vuex';
 export default {
-    setup() {
-        
-    }, 
     // props:[
     // 'propsdata'
     // ],
     methods:{
-        removeTodo(todoItem,index){
-          console.log("rrrremoveOtodo")
-            //this.$emit('removeItem',todoItem,index);
-            // const obj={
-            //   todoItem,
-            //   index:index
-            // }
-            this.$store.commit('removeOneItem',{todoItem,index});
-            // this.$store.commit('removeOneItem',obj);
-        },
-        toggleComplete(todoItem,index){
-            //로컬스토리지 데이터 갱신 toggleItem
-             //this.$emit('toggleItem',todoItem,index)
-            this.$store.commit('toggleOneItem', {todoItem,index});
-        }
+        ...mapMutations({
+          removeTodo: 'removeOneItem',//mutaions는 객체를 {todoItem,index} 넘겨줌
+          toggleComplete: 'toggleOneItem',
+
+        }),
+        //mapMutations로 단순화 된 코드들
+        // removeTodo(todoItem,index){
+        //     //this.$emit('removeItem',todoItem,index);
+        //     // const obj={
+        //     //   todoItem,
+        //     //   index:index
+        //     // }
+        //     this.$store.commit('removeOneItem',{todoItem,index});
+        //     // this.$store.commit('removeOneItem',obj);
+        // },
+        // toggleComplete(todoItem,index){
+        //     //로컬스토리지 데이터 갱신 toggleItem
+        //      //this.$emit('toggleItem',todoItem,index)
+        //     this.$store.commit('toggleOneItem', {todoItem,index});
+        // },
+
+    },
+    computed: {
+          // todoItems(){
+          //   return this.$store.getters.getTodoItems;
+          // },
+          ...mapGetters([`getTodoItems`])
     }
 }
 </script>
