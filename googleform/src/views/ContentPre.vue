@@ -6,6 +6,7 @@
         <article class="c_title active">
             <h3 class="qtitle"></h3>
             <p class="explanation">{{ previewData }}</p>
+            <!-- previewData안받아와짐 -->
             <p class="applicant">20 <span>명</span></p>
             <div class="application period">
               <p>신청기간</p>
@@ -35,16 +36,8 @@
   </div>
 </template>
 
-<script>
+<script setup>
 
-export default {
-  components: { 
-  },
-  setup() {
-  
-  },
-
-}
 </script>
 
 <style>
