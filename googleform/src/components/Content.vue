@@ -1,5 +1,8 @@
 <template>
    <div class="contentWrap" @change="fileChange()">
+
+    <div v-if="previewData.previewContent !== null" >있따 </div>
+    <div v-else>프리뷰 데이터가 없습니다.</div>
         <ContentNav  @custom-event="handleEvent"/>
         <!-- 필수 응답 제목 -->
         <article class="c_title active" >
@@ -10,12 +13,11 @@
             <span>마감일자</span><input type="date" placeholder="일자" v-model="alldata2.formEndDate"  >
         </article>
         <!-- 선택응답 -->
-        <ContentMain2  v-for="(item,index) in alldata2.data3" :key="index" 
-        
+        <ContentMain2  
+            v-for="(item,index) in alldata2.data3" 
+            :key="index" 
             @click="indexData($event,index)"  
-
             :itemData="item"
-
             @title-change="titleEvent($event,index)"
             @img-change="imgEvent($event,index)"
             @option-change="optionEvent($event,index)"
@@ -32,15 +34,39 @@
 
    </div>
 </template>
+
 <script>
-import { ref,reactive } from 'vue';
+import { ref,reactive,watch,computed } from 'vue';
 // import ContentMain from './ContentMain.vue';
 import ContentMain2 from './ContentMain2.vue';
 import ContentNav from './ContentNav.vue';
+import { defineProps } from 'vue';
 
     export default{
+        props: {
+            previewData: Object, 
+        },
         components:{ContentMain2,ContentNav},
-         setup() {
+        setup(props,{emit}) {
+            const previewData = ref(props.previewData);
+            watch(
+            () => previewData.value && previewData.value.previewContent, // 감시 대상
+            (newVal, oldVal) => {
+                if (newVal !== oldVal) {
+                emit('previewData-change',alldata2)
+             
+                }
+            }
+            );
+
+            const previewChange = ref(props)
+            console.log(previewChange.value)
+            if(previewChange!== null){
+                console.log("ssssssyes")
+            }else{
+                console.log("nonp")
+            }
+            console.log(previewChange)
             const alldata2 =  reactive({
                 formTitle:'',
                 formDetails:'',
@@ -139,7 +165,7 @@ import ContentNav from './ContentNav.vue';
             const deleteImgEvent =(data,index) =>{
                 alldata2.data3[index].img = '';
             }
-            
+  
             //props로 전달된 
             return {
                 alldata2,

@@ -1,3 +1,13 @@
+<script setup>
+import { router } from '@/router';
+
+const emit = defineEmits(["previewContent"])
+   
+const previewContent=(e)=>{
+    // emit('previewContent')
+    emit('previewContent',"previewContent")
+}
+</script>
 <template>
     <header>
         <div class="h_top">
@@ -11,22 +21,27 @@
             </div>
             <div class="ht_right">
                 <p><span class="material-symbols-outlined">palette</span></p>
-                <p><span class="material-symbols-outlined" >visibility</span></p>
+                <p @click="previewContent($event)">
+                    <!-- <router-link to="/ground/preview"> -->
+                        <span class="material-symbols-outlined" >visibility</span>
+                    <!-- </router-link> -->
+                </p>
                 <!-- <p><span class="material-symbols-outlined">undo</span></p> -->
                 <p><span class="material-symbols-outlined">send</span></p>
                 <p><span class="material-symbols-outlined">more_vert</span></p>
+
             </div>
         </div>
         <div class="h_bottom">
             <ul>
-                <li><a class="active" href="#">질문</a></li>
-                <li><a href="#">응답</a></li>
+                <li><router-link to="/ground/content">질문</router-link></li>
+                <li><router-link to="/ground/response">응답</router-link></li>
             </ul>
         </div>
     </header>
 </template>
 <style scoped>
-   @import url("../index.css");
+    @import url("../index.css");
    /* ----- header ----- */
     .h_top,.ht_left,.ht_right{display:flex;justify-content:space-between;align-items:center;}
     .form_icon{height: 40px;width: 40px;margin:4px 10px 4px 0;}

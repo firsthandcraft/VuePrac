@@ -135,9 +135,6 @@ import { reactive, ref,defineComponent } from "vue";
         props: {
             itemData: Object, // ContentMain2로부터 받을 props
         },
-        methods:{
-
-        },
         //Options APi
         setup(props, { emit }) {
 

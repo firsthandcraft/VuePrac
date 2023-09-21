@@ -1,14 +1,8 @@
 <template>
   <div id="bodyWrap">
-    <Ground/>
+    <router-view></router-view>
   </div>
 </template>
+<script setup>
 
-<script>
-import Ground from './components/Ground.vue'
-
-export default {
-  components:{Ground},
-
-}
 </script>
