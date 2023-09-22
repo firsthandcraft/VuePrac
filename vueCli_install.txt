@@ -22,3 +22,11 @@ vue ui
 
 #옵션 보기 
 vue create --help
+
+#port번호 바꾸기 
+package.json에서 serve를
+"serve": "vue-cli-service serve --port 3000"
+```
+ --port 3000
+```
+로바꾼다.
