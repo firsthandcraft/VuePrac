@@ -15,7 +15,7 @@
 </template>
 <script>
 import { reactive } from 'vue';
-import Card from './Card.vue';
+import Card from '../components/Card.vue';
 import axios from 'axios';
 
     export default{

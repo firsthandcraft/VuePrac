@@ -1,6 +1,6 @@
 <template>
      <div class="card shadow-sm">
-            <span class="img" :style="{backgroundImage:`url(${item.imgPath})`}"></span>
+            <span class="img" :style="{backgroundImage: `url(${item.imgPath})`}"></span>
             <!-- <img :src="item.imgPath" > -->
             <div class="card-body">
                 <p class="card-text">
