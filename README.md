@@ -18,11 +18,24 @@
 ---
 ## vuex
 
-#### helper 함수 
--- mapState 
+### helper 함수 
+---
+#### mapState 
+---
+#### mapGetters 예제코드 :: 
 
--- mapGetters 예제코드 :: vuex-prac >> DemoView.vue // demoStore.js 는 mapgetters 
+vuex-prac 
+>> DemoView.vue // demoStore.js 는 mapgetters 
 
--- mapMutations 예제코드 :: my-project-ver2 >> TodoList, TodoFooter, store.js 
+---
+#### mapMutations 예제코드 ::
 
--- mapActions
+my-project-ver2 
+>> TodoList, TodoFooter, store.js 
+
+---
+#### mapActions
+
+#### 모듈화
+my-project-ver2 
+>> store파일 참조

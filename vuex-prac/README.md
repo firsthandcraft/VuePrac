@@ -1,24 +1,29 @@
-# vuex-prac
+# vuex
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
+## 설치하기
+``` bash
+npm install vuex --save
 ```
 
-### Compiles and minifies for production
+### vuex는 store > store.js와 같은 폴더에서 코드가 구현된다.
+``` javascript
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex);
+export const store = new Vuex.Store({
+    state:{
+        price:100
+    },
+    getters:{
+        originalPrice(state){
+            return state.price;
+        },
+        doublePrice(state){
+            return state.price*2;
+        },
+        triplePrice(state){
+            return state.price*3;
+        },
+    }
+})
 ```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
