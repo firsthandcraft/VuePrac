@@ -6,16 +6,16 @@
 
 #### src > assets 폴더 안에 css 파일을 넣고 
 
-![Alt text](image.png)
+![20230925_135904](https://github.com/firsthandcraft/VuePrac/assets/97497153/aec6b7df-4623-4d3e-9ee0-4c2df3116cf2)
+
 
 #### main.js에 import를 한다. 
 
-![Alt text](image-1.png)
+![20230925_140338](https://github.com/firsthandcraft/VuePrac/assets/97497153/22556624-11d5-46ff-b989-9b652b4b6e2d)
 
 #### css폴더 안에도 import 가 가능하다는거는 잊지 않기
-css 안 css import는 대부분 라이브러리 애니메이션등등일경우 많이람
-![Alt text](image-2.png)
-
+css 안 css import는 대부분 라이브러리 애니메이션등등일경우 함
+![20230925_141739](https://github.com/firsthandcraft/VuePrac/assets/97497153/44d52a7d-89d6-41e0-bcf0-d89c5f3ce0f6)
 
 --- 
 
