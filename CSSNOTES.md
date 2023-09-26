@@ -49,7 +49,12 @@ css 안 css import는 대부분 라이브러리 애니메이션등등일경우 �
             .p{color:red}
         </style>
 ```
-
+  혹은 script 폴더안에 import 하기 
+```html
+    <script>
+      import("./assets/css/reset.css");
+    </script>
+```
 ## 03. 인라인 방식
 Html 태그안에 style넣기 
 ```html
