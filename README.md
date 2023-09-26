@@ -1,15 +1,8 @@
 # vue.js 
 
-- [쇼핑몰](https://github.com/firsthandcraft/VuePrac/tree/vuedongsan)
-- [meomo application](https://github.com/firsthandcraft/VuePrac/tree/memo_with_express.js)
-- [todo application](https://github.com/firsthandcraft/VuePrac/tree/todo)
-- [google form application](https://github.com/firsthandcraft/VuePrac/tree/google_form)
-- [캡틴판교 vue by inflearn](https://github.com/firsthandcraft/VuePrac/tree/vue3_%ED%95%9C%EA%B6%8C%EC%9C%BC%EB%A1%9C%EB%81%9D%EB%82%B4%EB%8A%94)
-- [수코딩 vue](https://github.com/firsthandcraft/VuePrac/tree/vue_basic)
+- [Vue2_Cli3](/vue2_cli3/)
 
 
-## 설치방법
-### vite, cdn, npm으로 설치 
 
 ## 환경
 ### vuetify, vuex
