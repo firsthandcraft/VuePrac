@@ -35,15 +35,15 @@ css 안 css import는 대부분 라이브러리 애니메이션등등일경우 �
             @import navUtils from './assets/js/navUtils';
             const mobileCheck = !!navUtils.any();
             if(mobileCheck){
-              import("@/assets/mobile/common.css");
-              import("@/assets/mobile/page.main.css");
-              import("@/assets/mobile/page.popup.css");
-              import("@/assets/mobile/page.mypage.css");
+              @import("@/assets/mobile/common.css");
+              @import("@/assets/mobile/page.main.css");
+              @import("@/assets/mobile/page.popup.css");
+              @import("@/assets/mobile/page.mypage.css");
             } else {
-              import("@/assets/page.common.css");
-              import("@/assets/page.main.css");
-              import("@/assets/page.popup.css");
-              import("@/assets/page.mypage.css");
+              @import("@/assets/page.common.css");
+              @import("@/assets/page.main.css");
+              @import("@/assets/page.popup.css");
+              @import("@/assets/page.mypage.css");
             }
 
             .p{color:red}
