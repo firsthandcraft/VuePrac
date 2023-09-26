@@ -36,11 +36,14 @@
 import store from '@/scripts/store';
 
 export default{
+  
   setup(){
-    const logout=()=>{
-      store.commit('setAccount',0);
-      router
-    }
+    const logout = () => {
+        store.commit('setAccount', 0);
+        sessionStorage.removeItem("id");
+        router.push({path: "/"});
+
+      }
     return{logout}
   }
 }
