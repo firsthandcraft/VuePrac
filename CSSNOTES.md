@@ -29,8 +29,10 @@ css 안 css import는 대부분 라이브러리 애니메이션등등일경우 �
         <style scoped>
             @import url("../index.css"); 
             /*import 하여 사용한다.*/
+
+
             /* 혹은 if문으로 css를 넣을수 있다. */
-            import navUtils from './assets/js/navUtils';
+            @import navUtils from './assets/js/navUtils';
             const mobileCheck = !!navUtils.any();
             if(mobileCheck){
               import("@/assets/mobile/common.css");
