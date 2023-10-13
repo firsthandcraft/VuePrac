@@ -1,5 +1,28 @@
 # [Router](https://v3-docs.vuejs-korea.org/guide/typescript/options-api.html#augmenting-global-properties) 
+뷰 라우터는 Vue.js를 이용하여 싱글 페이지 애플리케이션(SPA)을 구현할 때 사용하는 Vue.js의 공식 라우터 입니다.
+### **라우터란? (Router)**
 
+라우터라고 하면 일반적으로 네트워크간에 데이터를 전송하는 장치를 말합니다. 뷰에서 말하는 라우터는 쉽게 말해서 URL에 따라 어떤 페이지를 보여줄지 매핑해주는 라이브러리라고 보시면 될 것 같습니다.
+
+예를 들어 “`‘/home’` 경로로 요청이 들어왔을때 `‘Home.vue’` 컴포넌트를 화면에 렌더링 해라!” 라는 역할을 수행하는 라이브러리라고 보시면 될 것 같습니다. 그리고 이때 `‘/home’` → `‘Home.vue’` 이러한 매핑정보를 라우트(Route)라고도 합니다.
+
+### 라우트란? (Route)
+
+어떤 URL에 대해 어떤 페이지를 표시해야 하는지에 대한 정보
+## 설치
+
+```bash
+npm install vue-router
+```
+
+## 시작하기
+
+`HomeView.vue`와 `AboutView.vue`라는 **페이지용 컴포넌트**를 만든후 `‘/’` 경로로 들어왔을 경우 `HomeView.vue` 페이지(컴포넌트)를 렌더링 하고 `‘/about’` 경로로 들어왔을 경우 `AboutView.vue` 페이지(컴포넌트)를 렌더링 하는 실습을 진행해 보도록 하겠습니다.
+
+- `‘/’` → `HomeView.vue`
+- `‘/about’` → `AboutView.vue`
+
+---
 ## Setting
 Router는 router폴더 >  index.js  에서 실행이 되고 views의 vue 파일로 보여진다. 
 
