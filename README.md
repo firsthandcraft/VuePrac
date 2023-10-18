@@ -36,7 +36,7 @@ npm run dev
 
 - cdn 실행
 - html에 스크립트 삽입
-- 
+
 
 ```html
 <!-- vue3 -->
