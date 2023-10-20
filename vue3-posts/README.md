@@ -27,7 +27,9 @@ Done. Now run:
   npm run dev
 
 ```
+
 ## lint
+
 ESLint : ESLint는 코드 검사기로 코드에 에러가 있는지 검사해주 도구 입니다.
 
 
