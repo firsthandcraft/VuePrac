@@ -227,3 +227,144 @@ const goAboutPage = () => router.push('/about');
 로컬 컴포넌트, 내장 컴포넌트, 기본 HTML 요소 구성 없이 Type-Checking을 사용할 수 있습니다.
 
 전역 컴포넌트의 경우 GlobalComponents 인터페이스를 정의해야 합니다. 예를 들면 다음과 같습니다.
+
+```jsx
+// components.d.ts
+declare module '@vue/runtime-core' {
+  export interface GlobalComponents {
+    RouterLink: typeof import('router-link')['RouterLink'];
+    RouterView: typeof import('router-link')['RouterView'];
+  }
+}
+export {};
+```
+
+## 동적라우티 매칭
+```jsx
+//router >> index.js
+const User = {
+  template: '<div>User</div>',
+}
+
+const routes = [
+  {   path: '/posts/:id',//동적 세그먼트는 콜론(:)으로 표시합니다.
+      name: 'PostListView',
+      component: PostDetailView
+  },
+]
+```
+
+ #### query, hash
+ $route.params 외에도 $route 객체는 $route.query(쿼리스트링), $route.hash(해시태그) 등과 같은 다른 유용한 정보도 노출합니다.
+
+##### query예시:::>>>>> 
+
+ /users?searchText=love
+{ params: {...}, hash: '...', query: { searchText: love } }
+
+---
+
+##### hash예시:::>>>>>
+
+/users/alice#profile
+{ params: {...}, hash: 'profile', query: { ... } }
+```html
+<!-- PostDetailview.vue -->
+<template>
+  <div>
+    <h2>게시글 detil</h2>
+    <hr class="my-4">
+    <p>params: {{ $route.params }}</p>
+    <p>query: {{ $route.query }}</p>
+  </div>
+</template>
+<script setup>
+
+</script>
+```
+주소창에 
+
+params 일경우
+http://localhost:5175/posts/dfg
+   
+query 일경우 
+http://localhost:5175/posts/dfg?searchText=%E3%85%81%E3%85%81%E3%85%81%E3%85%81
+
+```html
+<!-- 이런식으로 나옴 결과가 -->
+params: { "id": "dfg" }
+
+query: { "searchText": "ㅁㅁㅁㅁ" }
+```
+### [api 참고](https://router.vuejs.org/api/#routelocationnormalized)
+
+``` html
+<!-- PostListView.vue -->
+<template>
+  <div>
+    <h2>게시글 목록</h2>
+    <hr class="my-4">
+    <div class="row g-3">
+      <div v-for="post in posts" :key="post.id" class="col-4">
+        <PostItem :title="post.title" :content="post.content" :created-at="post.createdAt" @click="goPage(post.id)" />
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<script setup>
+  import PostItem from '@/components/posts/PostItem.vue';
+  import { getPosts } from '@/api/posts.js';
+  import {ref} from 'vue';
+  import {useRouter} from 'vue-router';
+  const router = useRouter();
+  const posts = ref([]);
+  const fetchPosts = async () => {
+    posts.value = await getPosts();
+  };
+
+  fetchPosts();
+  const goPage = (id) =>{
+    // router.push(`/posts/${id}`)// 1.주소로 전달하기
+
+    //2.router 객체 전달가능
+    router.push({
+      name:"PostDetail",
+      params:{
+        id,
+      }
+    })
+  }
+
+</script>
+```
+#### router.push 파라미터는 문자열 경로 또는 객체가 될 수 있습니다.
+```jsx
+// 리터럴 문자열 경로
+router.push('/users/eduardo')
+
+// 경로가 있는 개체
+router.push({ path: '/users/eduardo' })
+
+// 이름을 가지는 라우트
+router.push({ name: 'user', params: { username: 'eduardo' } })
+
+// 쿼리와 함께 사용, 결과적으로 /register?plan=private가 됩니다.
+router.push({ path: '/register', query: { plan: 'private' } })
+
+// 해시와 함께 사용, 결과적으로 /about#team가 됩니다.
+router.push({ path: '/about', hash: '#team' })
+```
+
+```jsx
+const username = 'eduardo'
+// URL을 수동으로 작성할 수 있지만 인코딩을 직접 처리해야 합니다.
+router.push(`/user/${username}`) // -> /user/eduardo
+// 위와 동일
+router.push({ path: `/user/${username}` }) // -> /user/eduardo
+// 가능하면 `name`과 `params`를 사용하여 자동 URL 인코딩의 이점을 얻습니다.
+router.push({ name: 'user', params: { username } }) // -> /user/eduardo
+// `params`는 `path`와 함께 사용할 수 없습니다.
+router.push({ path: '/user', params: { username } }) // -> /user
+```

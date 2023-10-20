@@ -3,7 +3,6 @@
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-console.log('router.path:::', router.path);
 const goAboutPage = () => {};
 router.push('/about');
 </script>
