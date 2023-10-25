@@ -1,24 +1,16 @@
-# toast
-
-## Project setup
+# vue ver 2 
+npm install
 ```
-yarn install
+npm install -g @vue/cli
+#후에
+vue create toast
 ```
-
-### Compiles and hot-reloads for development
+# toastgrid
+install
 ```
-yarn serve
+npm install --save @toast-ui/vue-grid
 ```
-
-### Compiles and minifies for production
+## serve start
 ```
-yarn build
+npm run serve
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
