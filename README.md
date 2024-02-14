@@ -13,6 +13,6 @@
 
 [Vue.js ver2 By todo리스트제작](https://github.com/firsthandcraft/VuePrac/tree/todo)
 
-스터디를 통하여 순수하게 제작한 작업
+스터디를 통하여 순수하게 제작한 작업 >>> 
 [구글폼제작하기](https://github.com/firsthandcraft/VuePrac/tree/google_form)
 
